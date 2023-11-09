@@ -1,5 +1,4 @@
 import styles from "./Charts.module.css"
-import Image from "next/image"
 
 
 import { useEffect, useRef, memo } from 'react';

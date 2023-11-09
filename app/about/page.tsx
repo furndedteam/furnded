@@ -3,6 +3,7 @@ import Navbar from "../components/navbar/Navbar"
 import Footer from "../components/footer/Footer"
 import { about } from "../utils/text"
 import WhatsAppBtn from "../components/whatsAppBtn/WhatsAppBtn"
+import ChartSlide from "../components/chartSlide/ChartSlide"
 
 export default function Index() {
   const aboutUs = about[0]
@@ -51,6 +52,7 @@ export default function Index() {
         </div>
       </section>
       <Footer />
+      <ChartSlide />
       <WhatsAppBtn />
     </div>
   )

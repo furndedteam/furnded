@@ -18,7 +18,7 @@ export  const texts = [
   {
     id: 3,
     title: "CRYPTO INVESTMENT",
-    desc: "4Dfuture trading engine has been designed to meet the highest online-trading industry standards. All systems have been uniquely coded to minimize latency and increase order execution speed. System automatically monitors all buying power factor, maximum order size, maximum position size after every order placement. 4Dfuture prides itself on having one of the most advanced and reliable trading software on the market.",
+    desc: "Furnded trading engine has been designed to meet the highest online-trading industry standards. All systems have been uniquely coded to minimize latency and increase order execution speed. System automatically monitors all buying power factor, maximum order size, maximum position size after every order placement. Furnded prides itself on having one of the most advanced and reliable trading software on the market.",
     url: cryptopiggy
  
   },

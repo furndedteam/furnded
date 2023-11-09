@@ -9,6 +9,7 @@ import WhatsAppBtn from './components/whatsAppBtn/WhatsAppBtn'
 import InvestmentCard from './components/investmentCard/InvestmentCard'
 import GeneralWithdraws from './components/generalWithdraws/GeneralWithdraws'
 import Testimonials from './components/testimonials/Testimonials'
+import ChartSlide from './components/chartSlide/ChartSlide'
 
 export default function Home() {
 
@@ -29,6 +30,7 @@ export default function Home() {
       <Footer />
       <WhatsAppBtn />
       <GeneralWithdraws withdrawals={withdrawals}/>
+      <ChartSlide />
     </>
   )
 }

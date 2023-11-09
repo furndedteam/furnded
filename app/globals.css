@@ -303,6 +303,16 @@ h1, h2, h3{
   width: 100%;
 }
 
+.chartSlide{
+  width: 100vw;
+  position: fixed;
+  left: 0px;
+  bottom: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+}
+
 .slideAnim{
   animation: slideAnim .3s ease-out forwards;
   width: 0;
