@@ -45,7 +45,7 @@ export default function Hero() {
         >
           <SwiperSlide className={s.swiperslides}>
             <div className={s.img}>
-              <Image placeholder="blur" src={cryptoBG} fill style={{objectFit: "cover"}} quality={100} alt="cryptocurrency"/>
+              <Image placeholder="blur" src={cryptoBG} fill style={{objectFit: "cover"}} quality={100} alt="cryptocurrency" priority/>
             </div>
             <div className={s.context}>
               <h1>Invest In Crypto</h1>
@@ -55,7 +55,7 @@ export default function Hero() {
 
           <SwiperSlide className={s.swiperslides}>
             <div className={s.img}>
-              <Image placeholder="blur" src={cryptoBG2} fill style={{objectFit: "cover"}} quality={100} alt="cryptocurrency"/>
+              <Image placeholder="blur" src={cryptoBG2} fill style={{objectFit: "cover"}} quality={100} alt="cryptocurrency" priority/>
             </div>
             <div className={s.context}>
               <h1>Best Way To Save</h1>

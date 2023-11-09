@@ -84,8 +84,8 @@ export default function Login() {
 
         
         <div className='formLinks'> 
-          <Link href="/forgot-password">Forgot <span>Password?</span> </Link>|
-          <Link href="/login">Create new account</Link>
+          <Link href="/forgotPassword">Forgot <span>Password?</span> </Link>|
+          <Link href="/signup">Create new account</Link>
         </div>
         {showButton && <button className='bigBtn full slideAnim'>{!isPending? 'Sign In': <ImSpinner2 className="spin" />}</button>}
         {error && <p className='formError'>{error}</p>}

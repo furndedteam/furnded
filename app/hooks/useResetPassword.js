@@ -4,7 +4,7 @@ import { useState } from "react";
 
 
 export default function useResetPassword() {
-  const [resetMessage, setResetMessage] = useState('')
+  const [resetMessage, setResetMessage] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [isPending, setIsPending] = useState(false)
 
