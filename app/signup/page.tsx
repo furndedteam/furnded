@@ -90,17 +90,17 @@ export default function Index() {
       <h1>Create An Account</h1>
       <div className='inputWrp'>
         <label htmlFor="fullName">Full Name</label>
-        <input value={values.fullName} type='text' id='fullName' onChange={handleChange("fullName")}/>
+        <input value={values.fullName} type='text' placeholder='Full Name' onChange={handleChange("fullName")}/>
       </div>
 
       <div className='inputWrp'>
         <label htmlFor="username">Username</label>
-        <input value={values.username} type='text' id='username' onChange={handleChange("username")}/>
+        <input value={values.username} type='text' placeholder='Username' onChange={handleChange("username")}/>
       </div>
 
       <div className='inputWrp'>
         <label htmlFor="email">Email</label>
-        <input value={values.email} type='email' id='email'  onChange={handleChange("email")}/>
+        <input value={values.email} type='email' placeholder='Email'  onChange={handleChange("email")}/>
       </div>
 
       <select value={values.country} onChange={(e) => setValues({...values, country: e.target.value})}>
@@ -135,7 +135,7 @@ export default function Index() {
 
         <div className='inputWrp'>
           <label htmlFor="referral">Referral Code(Optional)</label>
-          <input type='text' id='referral' onChange={() => handleChange("referral")}/>
+          <input type='text' placeholder='referral' onChange={() => handleChange("referral")}/>
         </div>
 
         <div className="inputWrp2">
