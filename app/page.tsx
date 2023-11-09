@@ -10,6 +10,7 @@ import InvestmentCard from './components/investmentCard/InvestmentCard'
 import GeneralWithdraws from './components/generalWithdraws/GeneralWithdraws'
 import Testimonials from './components/testimonials/Testimonials'
 import ChartSlide from './components/chartSlide/ChartSlide'
+import AutoCount from './components/autoCount/AutoCount'
 
 export default function Home() {
 
@@ -23,6 +24,7 @@ export default function Home() {
       <Hero />
       <SectionOne data={texts[0]} reversed={false}/>
       <SectionOne data={texts[1]} reversed={true}/>
+      <AutoCount />
       <SectionOne data={texts[2]} reversed={false}/>
       <SectionOne data={texts[3]} reversed={true}/>
       <InvestmentCard plans={plans} stock={null}/>
