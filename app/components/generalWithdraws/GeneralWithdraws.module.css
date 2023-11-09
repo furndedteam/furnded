@@ -1,8 +1,8 @@
 .container{
   position: fixed;
   top: 80px;
-  right: -10px;
-  padding: 0px 20px 0 0;
+  right: 0px;
+  padding: 0px 10px 0 0;
   animation-name: slideIn;
   animation-iteration-count: infinite;
   animation-duration: 11s;
@@ -21,11 +21,11 @@
 }
 
 @keyframes slideIn {
-  0%{ transform: translateX(-10%)}
-  30%{ transform: translateX(-10%)}
-  60%{ transform: translateX(100%)}
-  80%{ transform: translateX(100%)}
-  100%{ transform: translateX(-10%)}
+  0%{ transform: translateX(0%)}
+  10%{ transform: translateX(0%)}
+  50%{ transform: translateX(130%)}
+  80%{ transform: translateX(130%)}
+  100%{ transform: translateX(0%)}
 }
 
 .card h3{
