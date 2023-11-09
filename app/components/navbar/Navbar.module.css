@@ -1,0 +1,124 @@
+.ctn{
+  width: 100%;
+  height: 70px;
+  background: #ffffff;
+  top: 0;
+  left: 0;
+  z-index: 9000;
+}
+
+.wrp{
+  width: 100%;
+  height: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.logo{
+  width: 80px;
+  object-fit: contain;
+}
+
+.logo:hover{
+  cursor: pointer;
+}
+
+.signup a{
+  background: linear-gradient(135deg, #012875, #294CAC);
+  color: rgb(255, 255, 255);
+  padding: 13px 25px;
+  border-radius: 40px;
+  font-weight: 400;
+  transition: all ease-out .5s;
+  cursor: pointer;
+}
+
+.signup a:hover{
+  background: linear-gradient(250deg, #012875, #294CAC);
+}
+
+.profile{
+  display: flex;
+  align-items: center;
+}
+
+.image{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: rgb(0, 0, 0);
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.menu{
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 25px 20px;
+  font-size: 1rem;
+  border-radius: 7px;
+  transition: all ease-in-out 1.3s;
+  position: absolute;
+  top: 45px;
+  right: 45px;
+  z-index: 1000;
+}
+
+.menu a:hover{
+  color: rgb(0, 120, 80);
+  transition: all ease-in-out .1s;
+  cursor: pointer;
+}
+  
+.menu a:nth-child(2), .menu a:nth-child(3), .menu a:nth-child(4), .menu a:nth-child(5){
+  display: none;
+}
+
+
+
+
+@media only screen and (max-width: 700px) {
+.ctn{
+  padding: 15px 10px;
+}
+
+.logo{
+  width: 80px;
+}
+
+.profile{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.profile svg{
+  display: block;
+}
+
+.signup a{
+  padding: 13px;
+  font-size: .8rem;
+}
+
+.menu{
+  display: flex;
+  align-items: flex-start;
+  font-size: 1.2rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.menu a:nth-child(2), .menu a:nth-child(3), .menu a:nth-child(4), .menu a:nth-child(5){
+  display: block;
+}
+
+.nav nav, .nav2 nav{
+  padding: 0px 15px 0px 20px;
+}
+
+}

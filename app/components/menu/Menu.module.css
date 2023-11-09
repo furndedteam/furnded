@@ -1,0 +1,37 @@
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 10px;
+  gap: 20px;
+}
+
+.container a{
+  font-size: 1rem;
+  color: black;
+  padding-bottom: 3px;
+}
+
+.links{
+  display: flex;
+  flex-direction: column;
+}
+
+.links span{
+  width: 20px;
+  padding: 1.5px;
+  background: transparent;
+  border-radius: 10px;
+  transition: all ease-in-out 0.3s;
+  background: rgb(0, 0, 0);
+}
+
+.links:hover span{
+  width: 100%;
+}
+
+@media only screen and (max-width: 700px) {
+.container{
+  display: none;
+}
+}

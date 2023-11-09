@@ -1,0 +1,91 @@
+.container{
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background: black;
+  color: whitesmoke;
+  padding: 20px 20px;
+}
+
+.logo{
+  width: fit-content;
+  margin-bottom: 150px;
+}
+
+.menu{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.menu2{
+  display: none;
+}
+
+.menu div{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.menu  span{
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: all ease-in-out .2s;
+  cursor: pointer;
+}
+
+.menu  span:hover{
+  color: #00e99b !important;
+  transition: all ease-in-out .2s;
+}
+
+
+
+@media only screen and (max-width: 640px) {
+.container{
+  background: white;
+  min-height: 0px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo{
+  display: none;
+}
+
+.menu{
+  display: none;
+}
+
+.menu2{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0 10px 0;
+}
+
+.menu2 div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5;
+}
+
+.menu2 svg{
+  font-size: 2.2rem;
+}
+
+.menu2 span{
+  font-size: .5rem;
+}
+
+
+}

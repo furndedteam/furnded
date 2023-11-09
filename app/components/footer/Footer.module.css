@@ -1,0 +1,89 @@
+.container{
+  width: 100%;
+  background: rgb(16, 16, 16);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main{
+  width: 55%;
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 0px;
+}
+
+.head{
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.head h4{
+  font-size: 0.8rem;
+  color: #f8fcffd9;
+  padding-bottom: 6px;
+}
+
+.head span{
+  width: 50px;
+  padding: 2px;
+  background-image: linear-gradient(90deg, rgb(0, 132, 124), #000000 );
+  border-radius: 10px;
+}
+
+.links{
+  display: flex;
+  flex-direction: column;
+  font-size: 0.65rem;
+  gap: 9px;
+  transition: all ease-in-out 0.2s;
+  color: rgba(245, 245, 245, 0.4);
+}
+
+.links a:hover{
+  transition: all ease-in-out 0.3s;
+  color: bisque;
+  transform: scale(1.05);
+}
+
+.links span{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all ease-in-out 0.3s;
+}
+
+.links span:hover{
+  cursor: pointer;
+  color: bisque;
+  transition: all ease-in-out 0.3s;
+  transform: scale(1.05);
+}
+
+.copyright{
+  width: 100%;
+  padding: 20px 0px;
+  display: flex;
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.7rem;
+  align-items: center;
+  justify-content: center;
+  border-top: 0.5px solid rgba(245, 245, 245, 0.05);
+}
+
+
+@media only screen and (max-width: 600px) {
+
+.main{
+  width: 90%;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.copyright{
+  font-size: 0.5rem;
+}
+
+}

@@ -1,0 +1,58 @@
+.container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0px;
+}
+
+.hello{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hello p{
+  font-family: "isidora_sans_alt_boldbold";
+  font-size: 1rem;
+}
+
+.logo{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  transition: all ease-in-out .3s;
+}
+
+.image{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: rgb(0, 0, 0);
+  position: relative;
+  overflow: hidden;
+}
+
+.menu{
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 25px 20px;
+  font-size: .9rem;
+  color: black;
+  background: white;
+  border-radius: 7px;
+  transition: all ease-in-out .3s;
+  z-index: 1000;
+}
+
+.menu a:hover{
+  color: rgb(0, 120, 80);
+  transition: all ease-in-out .1s;
+  cursor: pointer;
+}
