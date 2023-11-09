@@ -1,14 +1,13 @@
 import styles from './Users.module.css'
-import IMG from "../public/assets/profileIMG.gif"
+import IMG from "@/public/assets/profileIMG.gif"
 import Image from 'next/image'
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { HiArrowNarrowLeft } from "react-icons/hi";
 import { useState } from 'react';
 
 
-export default function Users({document, error, isPending, filter}:any) {
+export default function Users({data, error, isPending, filter}:any) {
   const [ fullWidth, setFullWidth ] = useState(false)
-
 
 
   return (
@@ -18,14 +17,14 @@ export default function Users({document, error, isPending, filter}:any) {
       {isPending && <div>Loading...</div>}
       {error && <div>{error}</div>}
 
-      {document && 
-      document.map((user:any) => 
+      {data && 
+      data.map((user:any) => 
         <div className={styles.users} key={user.uid} onClick={() => filter(user.email)}>
             <div className={styles.img}>
               <Image 
                 priority src={user.photoURL ? user?.photoURL : IMG} 
-                width={33} height={33} objectFit='cover' objectPosition="center" 
-                alt="avatar" style={{borderRadius: "50%"}}
+                width={33} height={33}
+                alt="avatar"
                 />
             </div>
             <p>{user.displayName}</p>

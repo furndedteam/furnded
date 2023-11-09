@@ -31,7 +31,7 @@ export default function Hero() {
           spaceBetween={0}
           centeredSlides={true}
           loop={true}
-          speed={700}
+          speed={600}
           autoplay={{
             delay: 3500,
             disableOnInteraction: false

@@ -67,6 +67,19 @@ export default function Login() {
   }, [user, router])
 
 
+
+  
+if(user){
+  return (
+    <div className="spinnerCtn">
+      <div className="spinner">
+      <ImSpinner2 className="spin spinBig" color="#1649ff"/>
+      </div>
+    </div>
+  )
+}
+
+
   return ((!user) &&
     <div>
       <Navbar/>

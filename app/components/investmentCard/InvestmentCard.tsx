@@ -31,8 +31,7 @@ export default function InvestmentCard({plans}:any) {
           snapshot.forEach(doc => {
             setUserDetails({ ...doc.data(), id: doc.id})
           })
-        },
-        (error) => {
+        }, (error) => {
           // setError("could not fetch data frm the database...")
         })
     }
@@ -54,7 +53,7 @@ export default function InvestmentCard({plans}:any) {
           
           let newBal = userDetails.bal.deposit - amount
 
-          const newData = {...userDetails, "bal.deposit": newBal}
+          const newData = {...userDetails, bal: {...userDetails.bal, deposit: newBal}}
           const docRef = doc(db, "profile", user.email)
           setDoc(docRef, newData)
         }

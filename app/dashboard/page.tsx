@@ -40,7 +40,7 @@ export default function Index() {
 
   useEffect(()=>{   
     if(user){
-      if(user.email === "admin@gmail.com"){
+      if(user.email === "support@furnded.com"){
         router.push("/admin")
       }
       const q = query(collection(db, "profile"), where("email", "==", user.email))

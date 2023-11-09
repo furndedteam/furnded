@@ -319,6 +319,25 @@ h1, h2, h3{
   opacity: 0;
 }
 
+
+.spinnerCtn{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  z-index: 20000;
+}
+
+.spinner{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @keyframes slideAnim{
   0%{
     width: 0;

@@ -98,9 +98,9 @@ const BalCard: NextPage<IBalCardData> = ({ bal }) => {
             </div>
           </div>
           <div className={s.text}>
-            <h2 style={calLength(bal.deposit) ? {fontSize: "3.1rem"} : {}}>
+            <h2 style={calLength(bal?.deposit) ? {fontSize: "3.1rem"} : {}}>
               <span>$</span>
-              {bal?.deposit? Number(bal.deposit).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
+              {bal?.deposit? Number(bal?.deposit).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
           </h2>
             <p>Deposit</p>
           </div>
@@ -114,9 +114,9 @@ const BalCard: NextPage<IBalCardData> = ({ bal }) => {
             </div>
           </div>
           <div className={s.text}>
-            <h2 style={calLength(bal.profit) ? {fontSize: "3.1rem"} : {}}>
+            <h2 style={calLength(bal?.profit) ? {fontSize: "3.1rem"} : {}}>
               <span>$</span>
-              {bal?.profit? Number(bal.profit).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
+              {bal?.profit? Number(bal?.profit).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
             </h2>
             <p>Profits</p>
           </div>
@@ -130,9 +130,9 @@ const BalCard: NextPage<IBalCardData> = ({ bal }) => {
             </div>
           </div>
           <div className={s.text}>
-            <h2 style={calLength(bal.withdraw) ? {fontSize: "3.1rem"} : {}}>
+            <h2 style={calLength(bal?.withdraw) ? {fontSize: "3.1rem"} : {}}>
               <span>$</span>
-              {bal?.withdraw? Number(bal.withdraw).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
+              {bal?.withdraw? Number(bal?.withdraw).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
             </h2>
             <p>Withdraws</p>
           </div>
@@ -166,9 +166,9 @@ const BalCard: NextPage<IBalCardData> = ({ bal }) => {
             }
           </div>
           <div className={s.text}>
-            <h2 style={calLength(bal.deposit) ? {fontSize: "3.1rem"} : {}}>
+            <h2 style={calLength(bal?.deposit) ? {fontSize: "3.1rem"} : {}}>
               <span>$</span>
-              {bal?.deposit? Number(bal.deposit).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
+              {bal?.deposit? Number(bal?.deposit).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
             </h2>
             <p>Deposit</p>
           </div>
@@ -197,9 +197,9 @@ const BalCard: NextPage<IBalCardData> = ({ bal }) => {
             }
           </div>
           <div className={s.text}>
-            <h2 style={calLength(bal.profit) ? {fontSize: "3.1rem"} : {}}>
+            <h2 style={calLength(bal?.profit) ? {fontSize: "3.1rem"} : {}}>
               <span>$</span>
-              {bal?.profit? Number(bal.profit).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
+              {bal?.profit? Number(bal?.profit).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
             </h2>
             <p>Profits</p>
           </div>
@@ -229,9 +229,9 @@ const BalCard: NextPage<IBalCardData> = ({ bal }) => {
           }
           </div>
           <div className={s.text}>
-            <h2 style={calLength(bal.withdraw) ? {fontSize: "3.1rem"} : {}}>
+            <h2 style={calLength(bal?.withdraw) ? {fontSize: "3.1rem"} : {}}>
               <span>$</span>
-              {bal?.withdraw? Number(bal.withdraw).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
+              {bal?.withdraw? Number(bal?.withdraw).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
             </h2>
             <p>Withdraws</p>
           </div>

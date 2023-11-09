@@ -14,6 +14,25 @@
   padding-top: 10px;
 }
 
+.spinnerCtn{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  z-index: 20000;
+}
+
+.spinner{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 .text{
   width: 100%;
   display: flex;
@@ -24,15 +43,7 @@
   padding-top: 80px;
 }
 
-.card{
-  width: 230px;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.02);
-  padding: 20px 10px;
-}
-
-.wrapper{
+.wrp{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -40,22 +51,40 @@
   gap: 10px;
 }
 
+.wrp input{
+  width: 100px !important;
+}
+
+.wrp button{
+  margin-top: 20px;
+  background-color: hsla(218, 100%, 50%, 0.03);
+}
+
 .title{
   padding-bottom: 20px;
-  font-size: 1.3rem;
+  font-size: 2rem;
 }
 
 .textarea{
-  width: 100px;
+  width: 100%;
+  padding: 20px 8px;
+  background: none;
+  outline: none;
+  border: 1px solid #042254;
+  border-radius: 10px;
 }
 
-.submit{
-  width: 100px;
+.textarea:focus{
+  border: 1px solid #002e7d;
+}
+
+.wrp label{
+  font-size: .75rem;
+  color: #042254;
 }
 
 
 @media screen and (max-width: 500px){
-
 .main{
   justify-content: center;
   padding-left: 60px;
