@@ -21,22 +21,25 @@
 }
 
 .head h4{
-  font-size: 0.8rem;
-  color: #f8fcffd9;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #ffffff;
   padding-bottom: 6px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .head span{
   width: 50px;
   padding: 2px;
-  background-image: linear-gradient(90deg, rgb(0, 132, 124), #000000 );
+  background-image: linear-gradient(90deg, #294CAC, #000000 );
   border-radius: 10px;
 }
 
 .links{
   display: flex;
   flex-direction: column;
-  font-size: 0.65rem;
+  align-items: flex-start;
+  font-size: 0.8rem;
   gap: 9px;
   transition: all ease-in-out 0.2s;
   color: rgba(245, 245, 245, 0.4);

@@ -80,7 +80,7 @@ export default function ContactForm() {
 
 
   return (
-    <div className='formCtn'>
+    <div>
       <form className='form' onSubmit={handleSubmit}>
         <h2>Contact Me!</h2>
         <div className='inputWrp'>

@@ -229,7 +229,7 @@ h1, h2, h3{
   height: 50px;
   display: flex;
   align-items: center;
-  border: 1px solid var(--gray);
+  border: 1px solid #042254;
   border-radius: 5px;
 }
 
