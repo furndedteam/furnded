@@ -10,8 +10,8 @@ import "swiper/css/pagination";
 // @ts-ignore
 import { Autoplay, Pagination, Navigation } from "swiper";
 import Image from "next/image"
-import cryptoBG from "@/public/assets/cryptobg.jpg"
-import cryptoBG2 from "@/public/assets/cryptobg2.jpg"
+import cryptoBG from "@/public/assets/cryptoBg.jpg"
+import cryptoBG2 from "@/public/assets/cryptoBg2.jpg"
 import { useRouter } from 'next/navigation'
 import { HiArrowNarrowRight } from "react-icons/hi";
 
