@@ -102,8 +102,8 @@
 }
 
 .signup a{
-  padding: 13px;
-  font-size: .8rem;
+  padding: 14px 18px;
+  font-size: .85rem;
 }
 
 .menu{
@@ -115,10 +115,6 @@
 
 .menu a:nth-child(2), .menu a:nth-child(3), .menu a:nth-child(4), .menu a:nth-child(5){
   display: block;
-}
-
-.nav nav, .nav2 nav{
-  padding: 0px 15px 0px 20px;
 }
 
 }

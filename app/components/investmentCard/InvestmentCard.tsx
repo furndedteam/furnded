@@ -14,7 +14,7 @@ export default function InvestmentCard({plans}:any) {
   const router = useRouter()
   const createdAt = new Date().toLocaleString()
   const { addDocument } = useFirestore("history")
-  const contextData = useAuth()
+  const {user} = useAuth()
   const [message, setMessage] = useState(false)
   const [success, setSuccess] = useState<string|null>(null)
   const [failed, setFailed] = useState<string|null>(null)
@@ -22,8 +22,8 @@ export default function InvestmentCard({plans}:any) {
 
 
   useEffect(()=>{
-    if(contextData.user){
-      const q = query(collection(db, "profile"), where("email", "==", contextData.user.email))
+    if(user){
+      const q = query(collection(db, "profile"), where("email", "==", user.email))
 
       onSnapshot(q, 
         (snapshot) => {
@@ -36,24 +36,31 @@ export default function InvestmentCard({plans}:any) {
           // setError("could not fetch data frm the database...")
         })
     }
-  }, [contextData?.user])
+  }, [user])
 
 
     const handleInvest = (desc:any, title:any) => {
-      if (contextData?.user) {
+      setSuccess(null)
+      setFailed(null)
+      setMessage(false)
+
+      if (user) {
         const amount = Number(window.prompt("Enter investment amount", ""))
+
+        
         if (amount < userDetails.bal.deposit) {
           setSuccess("Your investment was successful")
-          addDocument({ title: `${title} Investment`, amount, desc, createdAt, email: contextData.user.email, pending: true })
+          addDocument({ title: `${title} Investment`, amount, desc, createdAt, email: user.email, pending: true })
           
           let newBal = userDetails.bal.deposit - amount
 
           const newData = {...userDetails, "bal.deposit": newBal}
-          const docRef = doc(db, "profile", contextData.user.email)
+          const docRef = doc(db, "profile", user.email)
           setDoc(docRef, newData)
         }
 
         if(amount > userDetails.bal.deposit) setFailed("Insufficient funds")
+        setMessage(true)
       } else {
         router.push("/login")
       }

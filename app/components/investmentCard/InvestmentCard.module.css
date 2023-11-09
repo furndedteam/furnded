@@ -34,11 +34,12 @@
 
 .content1 h3{
   color: rgba(0, 0, 0);
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.8rem;
+  font-weight: 700;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   letter-spacing: -1.5px;
   padding-bottom: 8px;
+  color: #012875;
 }
 
 .content1 h3 span{
@@ -48,7 +49,7 @@
 
 .content1 p{
   color: rgba(0, 0, 0, 0.848);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 .content1 span{
@@ -60,11 +61,11 @@
   display: inline-block;
 }
 
-.fact1 span, .fact2 span{
+.fact1 span{
   gap: 10px;
   display: flex;
   align-items: center;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   margin-bottom: 10px;
 }
 
@@ -74,6 +75,10 @@
 
 .fact1 span p{
   color: rgb(0, 0, 0);
+}
+
+.fact1 svg{
+  font-size: 1.5rem;
 }
 
 .card button{

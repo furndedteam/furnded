@@ -4,6 +4,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { useState } from 'react';
 import { HiOutlineLogout } from "react-icons/hi";
 import { useLogout } from "../../hooks/useLogout"
+import Link from 'next/link';
 
 interface IDashboardNavData {
   details: any
@@ -40,6 +41,8 @@ export default function DashboardNav({modal, details}: IDashboardNavData) {
         <MdKeyboardArrowDown size="1.3em" style={{cursor: 'pointer'}} onClick={handleClick}/>
         {menu && 
           <div className={s.menu} onClick={handleClick}>
+            <Link href="/">Home</Link>
+            <Link href="/invest">Plans</Link>
             <a onClick={() => modal(true)}>Withdraw</a>
             <a onClick={handleContact}>Contact</a>
 
