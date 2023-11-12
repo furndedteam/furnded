@@ -1,36 +1,38 @@
 .container{
-  width: 50px;
+  width: 80px;
   min-height: 100vh;
   height: 100%;
-  background: #ffffff;
+  background: #fffffc;
   color: rgba(0, 0, 0, 0.9);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 100px 0px 20px 10px;
+  padding: 100px 0px 20px 5px;
   overflow-x: hidden;
+  overflow-y: scroll;
   position: fixed;
   top: 0;
   left: 0;
-  transition: all ease-in-out .3s;
+  transition: all ease .5s;
   z-index: 100;
 }
 
 .container2{
-  width: 200px;
+  width: fit-content;
   min-height: 100vh;
   height: 100%;
-  background: #ffffff;
+  background: #fffffc;
   color: rgba(0, 0, 0, 0.9);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 100px 0px 20px 10px;
   overflow-x: hidden;
+  overflow-y: scroll;
   position: fixed;
   top: 0;
   left: 0;
-  transition: all ease-in-out .3s;
+  transition: all ease .5s;
   z-index: 100;
 }
 
@@ -39,15 +41,18 @@
   align-items: center;
   justify-content: center;
   position: sticky;
+  padding: 10px;
+  gap: 10px;
 }
 
 .container2 .users p{
-  display: block;
-  width: 140px;
-  overflow: hidden;
-  font-size: 0.75rem;
+  font-size: .9rem;
   font-weight: 600;
   transition: all ease-in-out .3s;
+}
+
+.container2 .users p:hover{
+ cursor: pointer;
 }
 
 .container .users p{
@@ -55,21 +60,16 @@
   transition: all ease-in-out .3s;
 }
 
-
 .img{
-  width: 35px;
-  height: 35px;
-  background-color: black;
-  object-fit: cover;
-  margin: 2px 15px 2px 0px;
   position: relative;
-  border-radius: 50%;
-  overflow: hidden;
+  margin-bottom: -6px;
 }
 
 .img img{
-  width: 100%;
-  height: 100%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  background: rgb(103, 103, 103);
 }
 
 .arrow{
@@ -78,4 +78,21 @@
   right: 0;
   z-index: 5000;
   transition: all ease-in-out .3s;
+}
+
+@media screen and (max-width: 600px){
+.container{
+  width: 48px;
+  padding-left: 0;
+  gap: 10px;
+}
+
+.users{
+  padding: 3px;
+}
+
+.img img{
+  width: 40px;
+  height: 40px;
+}
 }

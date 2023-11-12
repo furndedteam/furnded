@@ -1,33 +1,29 @@
 import styles from './Users.module.css'
-import IMG from "@/public/assets/profileIMG.gif"
-import Image from 'next/image'
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { HiArrowNarrowLeft } from "react-icons/hi";
 import { useState } from 'react';
+import { PulseLoader } from 'react-spinners';
 
 
-export default function Users({data, error, isPending, filter}:any) {
+export default function Users({document, error, isPending, filter}) {
   const [ fullWidth, setFullWidth ] = useState(false)
+
 
 
   return (
     <div className={fullWidth ? styles.container2 : styles.container}>
       {!fullWidth && <HiArrowNarrowRight size="1.5em" className={styles.arrow} onClick={() => setFullWidth(!fullWidth)}/>}
       {fullWidth && <HiArrowNarrowLeft size="1.5em" className={styles.arrow} onClick={() => setFullWidth(!fullWidth)}/>}
-      {isPending && <div>Loading...</div>}
+      {isPending && <PulseLoader color='#00000080' size={7}/> }
       {error && <div>{error}</div>}
 
-      {data && 
-      data.map((user:any) => 
+      {document && 
+      document.map((user) => 
         <div className={styles.users} key={user.uid} onClick={() => filter(user.email)}>
             <div className={styles.img}>
-              <Image 
-                priority src={user.photoURL ? user?.photoURL : IMG} 
-                width={33} height={33}
-                alt="avatar"
-                />
+              <img src={`https://robohash.org/${user.uid}`} width={33} height={33} alt="avatar" style={{borderRadius: "50%"}}/>
             </div>
-            <p>{user.displayName}</p>
+            <p>{user.email}</p>
         </div>
       )
       }

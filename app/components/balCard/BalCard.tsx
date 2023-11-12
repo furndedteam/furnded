@@ -1,247 +1,43 @@
-"use client"
-import { ReactNode, useEffect, useState } from "react";
-import { MdOutlineCandlestickChart } from "react-icons/md";
-import { GiWallet } from "react-icons/gi";
-import s  from "./BalCard.module.css";
-import { NextPage } from "next";
+import styles from './BalCard.module.css';
+import { MdOutlineShowChart, MdSavings } from 'react-icons/md';
+import { FaCoins } from 'react-icons/fa';
+import { GiCash, GiReceiveMoney } from 'react-icons/gi';
+import { TiChartBar } from 'react-icons/ti';
+import DashboardNav from '../../components/dashboardNav/DashboardNav';
+import useCollection from '../../hooks/useCollection';
 
-export type BalCardData = {
-  deposit: ReactNode,
-  profit: ReactNode,
-  withdraw: ReactNode,
-}
+export default function BalCard() {
+  const { data } = useCollection('profile', false, true);
+  const { bal } = data as any
 
-interface IBalCardData {
-  bal: BalCardData
-}
-
-
-const BalCard: NextPage<IBalCardData> = ({ bal }) => {
-  const [portfolio, setPortfolio] = useState('deposit');
-  const [deposit, setDeposit] = useState(true);
-  const [profit, setProfit] = useState(false);
-  const [withdraw, setWithdraw] = useState(false);
-  const [mobile, setMobile] = useState(false);
-
+  return (bal ? (
+      <div className={styles.container}>
+        <DashboardNav />
+        <div className={styles.balCard}>
+          {Object.entries(bal).map(([key, value]: any) => (
+            <div className={styles.card} key={key}>
+              <div className={styles.cardheader}>
+                <div className={styles.cardtitle}>
+                  <h3>{key}</h3>
+                </div>
   
-  useEffect(() => {
-    const handleResize = () => {
-      const windowWidth = window.innerWidth;
-      if (windowWidth >= 600) {
-        setMobile(false);
-      } else {
-        setMobile(true);
-      }
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-
-
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (e.target.value === "deposit") {
-      setDeposit(true)
-      setProfit(false)
-      setWithdraw(false)
-      setPortfolio(e.target.value)
-    }
-    if (e.target.value === "profit") {
-      setProfit(true)
-      setWithdraw(false)
-      setDeposit(false)
-      setPortfolio(e.target.value)
-    }
-    if (e.target.value === "withdraw") {
-      setWithdraw(true)
-      setProfit(false)
-      setDeposit(false)
-      setPortfolio(e.target.value)
-    }
-  }
-
-  const getColor = (b: ReactNode, o:ReactNode) =>  b !== 0 ? `rgba(0, 233, 105, ${o})` : `rgba(255, 0, 0, ${o})`
-
-  const calLength = (e:ReactNode) => {
-    if(bal && e){
-      if(e.toString().length > 5) return true
-      else return false
-    }
-  }
-
-
-  return (
-    <>
-      {mobile &&
-      <div className={s.portfolioSelect}>
-        <select value={portfolio} onChange={handleChange}>
-          <option value={"deposit"}>Deposit</option>
-          <option value={"profit"}>Profit</option>
-          <option value={"withdraw"}>Withdraw</option>
-        </select>
-      </div>
-      }
-
-
-      {!mobile &&
-      <div className={s.container}>
-        <div className={s.card}>
-          <div className={s.icons}>
-            <div className={`${s.iconWrp} ${s.iconWrpBg}`}><GiWallet /></div>
-            <div className={s.iconWrp} style={{ background: getColor(bal?.deposit, "0.12")}}>
-              <MdOutlineCandlestickChart size="1.5em" style={{ color: getColor(bal?.deposit, "1")}}/>
+                <div className={styles.isactive}>
+                  {key === "balance" && <FaCoins className={styles.circle}/>}
+                  {key === "profit" && <GiCash className={styles.circle}/>}
+                  {key === "savings" && <MdSavings className={styles.circle}/>}
+                  {key === "withdrawal" && <GiReceiveMoney className={styles.circle}/>}
+                  {key === "investment" && <TiChartBar className={styles.circle}/>}
+                </div>
+              </div>
+  
+              <div className={styles.cardbody}>
+                <h1><span>$</span>{value ? value : 0.00}</h1>
+                <MdOutlineShowChart className={styles.chart} style={value > 0 ? {color: "#05C169"} : {color: "#e90000"}}/>
+              </div>
             </div>
-          </div>
-          <div className={s.text}>
-            <h2 style={calLength(bal?.deposit) ? {fontSize: "3.1rem"} : {}}>
-              <span>$</span>
-              {bal?.deposit? Number(bal?.deposit).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
-          </h2>
-            <p>Deposit</p>
-          </div>
-        </div> 
-
-        <div className={s.card}>
-          <div className={s.icons}>
-            <div className={`${s.iconWrp} ${s.iconWrpBg}`}><GiWallet /></div>
-            <div className={s.iconWrp} style={{ background: getColor(bal?.profit, "0.12")}}>
-              <MdOutlineCandlestickChart size="1.5em" style={{ color: getColor(bal?.profit, "1")}}/>
-            </div>
-          </div>
-          <div className={s.text}>
-            <h2 style={calLength(bal?.profit) ? {fontSize: "3.1rem"} : {}}>
-              <span>$</span>
-              {bal?.profit? Number(bal?.profit).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
-            </h2>
-            <p>Profits</p>
-          </div>
-        </div>
-
-        <div className={s.card}>
-          <div className={s.icons}>
-            <div className={`${s.iconWrp} ${s.iconWrpBg}`}><GiWallet /></div>
-            <div className={s.iconWrp} style={{ background: getColor(bal?.withdraw, "0.12")}}>
-              <MdOutlineCandlestickChart size="1.5em" style={{ color: getColor(bal?.withdraw, "1")}}/>
-            </div>
-          </div>
-          <div className={s.text}>
-            <h2 style={calLength(bal?.withdraw) ? {fontSize: "3.1rem"} : {}}>
-              <span>$</span>
-              {bal?.withdraw? Number(bal?.withdraw).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
-            </h2>
-            <p>Withdraws</p>
-          </div>
+          ))}
         </div>
       </div>
-      }
-
-
-
-
-      {mobile &&
-      <div className={s.container}>
-        {deposit &&
-        <div className={s.card}>
-          <div className={s.icons}>
-            <div className={`${s.iconWrp} ${s.iconWrpBg}`}><GiWallet /></div>
-            {deposit && 
-            <div className={s.iconWrp} style={{background: getColor(bal?.deposit, "0.12")}}>
-              <MdOutlineCandlestickChart size="1.5em" style={{ color: getColor(bal?.deposit, "1")}}/>
-            </div>
-            }
-            {profit && 
-            <div className={s.iconWrp} style={{background: getColor(bal?.profit, "0.12")}}>
-              <MdOutlineCandlestickChart size="1.5em" style={{ color: getColor(bal?.profit, "1")}}/>
-            </div>
-            }
-            {withdraw && 
-            <div className={s.iconWrp} style={{background: getColor(bal?.withdraw, "0.12")}}>
-              <MdOutlineCandlestickChart size="1.5em" style={{ color: getColor(bal?.withdraw, "1")}}/>
-            </div>
-            }
-          </div>
-          <div className={s.text}>
-            <h2 style={calLength(bal?.deposit) ? {fontSize: "3.1rem"} : {}}>
-              <span>$</span>
-              {bal?.deposit? Number(bal?.deposit).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
-            </h2>
-            <p>Deposit</p>
-          </div>
-        </div> 
-        }
-
-
-        {profit &&
-        <div className={s.card}>
-          <div className={s.icons}>
-            <div className={`${s.iconWrp} ${s.iconWrpBg}`}><GiWallet /></div>
-            {deposit && 
-            <div className={s.iconWrp} style={{background: getColor(bal?.deposit, "0.12")}}>
-              <MdOutlineCandlestickChart size="1.5em" style={{ color: getColor(bal?.deposit, "1")}}/>
-            </div>
-            }
-            {profit && 
-            <div className={s.iconWrp} style={{background: getColor(bal?.profit, "0.12")}}>
-              <MdOutlineCandlestickChart size="1.5em" style={{ color: getColor(bal?.profit, "1")}}/>
-            </div>
-            }
-            {withdraw && 
-            <div className={s.iconWrp} style={{background: getColor(bal?.withdraw, "0.12")}}>
-              <MdOutlineCandlestickChart size="1.5em" style={{ color: getColor(bal?.withdraw, "1")}}/>
-            </div>
-            }
-          </div>
-          <div className={s.text}>
-            <h2 style={calLength(bal?.profit) ? {fontSize: "3.1rem"} : {}}>
-              <span>$</span>
-              {bal?.profit? Number(bal?.profit).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
-            </h2>
-            <p>Profits</p>
-          </div>
-        </div>
-        }
-
-
-
-        {withdraw &&
-        <div className={s.card}>
-          <div className={s.icons}>
-            <div className={`${s.iconWrp} ${s.iconWrpBg}`}><GiWallet /></div>
-            {deposit && 
-            <div className={s.iconWrp}>
-              <MdOutlineCandlestickChart size="1.5em" style={{ color: getColor(bal?.deposit, "1")}}/>
-            </div>
-            }
-            {profit && 
-            <div className={s.iconWrp}>
-              <MdOutlineCandlestickChart size="1.5em" style={{ color: getColor(bal?.profit, "1")}}/>
-            </div>
-            }
-            {withdraw && 
-            <div className={s.iconWrp}>
-              <MdOutlineCandlestickChart size="1.5em" style={{ color: getColor(bal?.withdraw, "1")}}/>
-            </div>
-          }
-          </div>
-          <div className={s.text}>
-            <h2 style={calLength(bal?.withdraw) ? {fontSize: "3.1rem"} : {}}>
-              <span>$</span>
-              {bal?.withdraw? Number(bal?.withdraw).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '0.00'}
-            </h2>
-            <p>Withdraws</p>
-          </div>
-        </div>
-        }
-      </div>
-      }
-    </>
-  )
+    ) : null
+  );
 }
-
-
-export default BalCard

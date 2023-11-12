@@ -18,6 +18,7 @@ export default function RootLayout({
   return (
     <AuthProvider>
       <html lang="en">
+        <script src="//code.tidio.co/e0ceg9ltllyuw69ffevlpmc93ejqulqo.js" async></script>
         <body className={inter.className}>{children}</body>
       </html>
     </AuthProvider>

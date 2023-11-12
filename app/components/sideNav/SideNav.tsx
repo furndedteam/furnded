@@ -1,34 +1,92 @@
-import styles from './SideNav.module.css';
-import Link from 'next/link';
-import Image from 'next/image';
-import { MdNotificationsActive } from "react-icons/md";
-import { RiFundsFill } from "react-icons/ri";
-import { RiUser3Fill } from "react-icons/ri";
-import { HiHome } from "react-icons/hi";
-import logo from "../../../public/assets/logo.svg"
+// import styles
+import styles from './SideNav.module.css'
 
-export default function SideNav({view, dashboard, profile, history, funding}:any) {
+//importing router functions
+import { useRouter, useParams } from 'next/navigation'
 
+//importing logout and auth context
+import { useLogout } from '../../hooks/useLogout'
+import useAuth from '../../hooks/useAuth'
 
-  return (
+//importing icons
+import {BsPersonFill, BsPerson} from "react-icons/bs";
+import { HiHome, HiOutlineHome, HiOutlineLogout} from "react-icons/hi";
+import { MdOutlineAccountBalance, MdAccountBalance } from 'react-icons/md'
+import { IoStatsChartOutline, IoStatsChart, IoBarChartOutline, IoBarChartSharp } from 'react-icons/io5'
+
+export default function SideNav() {
+  const { authIsReady, user } = useAuth()
+  const { page } = useParams()
+  const { logout } = useLogout()
+  const router = useRouter()
+  
+
+  return (authIsReady && user &&
     <div className={styles.container}>
-      <div className={styles.logo}>
-        <Link href="/">
-           <Image src={logo} height={25} width={70} alt="logo" />      
-        </Link>
-      </div>
-      <div className={styles.menu}>
-        <a onClick={() => view("dashboard")}><div><HiHome size="1.5em" /><span>Dashboard</span></div></a>
-        <a onClick={() => view("profile")}><div><RiUser3Fill size="1.5em" /><span>Profile</span></div></a>
-        <a onClick={() => view("funding")}><div><RiFundsFill size="1.5em" /><span>Funding</span></div></a>
-        <a onClick={() => view("history")}><div><MdNotificationsActive size="1.5em" /><span>History</span></div></a>
-      </div>
-      <div className={styles.menu2}>
-        <a onClick={() => view("dashboard")}><div style={dashboard ? {color: "#294CAC"} : {color: "black"}}><HiHome /><span>Dashboard</span></div></a>
-        <a onClick={() => view("profile")}><div style={profile ? {color: "#294CAC"} : {color: "black"}}><RiUser3Fill  /><span>Profile</span></div></a>
-        <a onClick={() => view("funding")}><div style={funding ? {color: "#294CAC"} : {color: "black"}}><RiFundsFill /><span>Funding</span></div></a>
-        <a onClick={() => view("history")}><div style={history ? {color: "#294CAC"} : {color: "black"}}><MdNotificationsActive  /><span>History</span></div></a>
-      </div>
+        <div className={styles.profile}>
+            <img src={user.photoURL ? user.photoURL : `https://robohash.org/${user.uid}`} alt="avatar"/>
+        </div>
+        <div className={styles.links}>
+          {page === undefined || page === "home" ? 
+          <div className={styles.active}>
+            <HiOutlineHome onClick={() => router.push("/dashboard/home")} className={styles.menuIcon}/> 
+            <p onClick={() => router.push("/dashboard/home")}>Dashboard</p>
+          </div> :
+          <div>
+            <HiHome onClick={() => router.push("/dashboard/home")} className={styles.menuIcon}/> 
+            <p onClick={() => router.push("/dashboard/home")}>Dashboard</p>
+          </div>
+          }
+
+          {(page === "fund") ?
+          <div className={styles.active}>
+            <MdOutlineAccountBalance onClick={() => router.push("/dashboard/fund")} className={styles.menuIcon}/> 
+            <p onClick={() => router.push("/dashboard/fund")}>Add Fund</p>
+          </div> :
+          <div>
+            <MdAccountBalance onClick={() => router.push("/dashboard/fund")} className={styles.menuIcon}/> 
+            <p onClick={() => router.push("/dashboard/fund")}>Add Fund</p>
+          </div>
+          }
+
+          {(page === "invest") ?
+          <div className={styles.active}>
+            <IoStatsChartOutline onClick={() => router.push("/dashboard/invest")} className={styles.menuIcon}/> 
+            <p onClick={() => router.push("/dashboard/invest")}>Invest</p>
+          </div> :
+          <div>
+            <IoStatsChart onClick={() => router.push("/dashboard/invest")} className={styles.menuIcon}/> 
+            <p onClick={() => router.push("/dashboard/invest")}>Invest</p>
+          </div>
+          }
+
+          {(page === "profile") ?
+          <div className={styles.active}>
+            <BsPerson onClick={() => router.push("/dashboard/profile")} className={styles.menuIcon}/> 
+            <p onClick={() => router.push("/dashboard/profile")}>Profile</p>
+          </div> :
+          <div>
+            <BsPersonFill onClick={() => router.push("/dashboard/profile")} className={styles.menuIcon}/> 
+            <p onClick={() => router.push("/dashboard/profile")}>Profile</p>
+          </div>
+          }
+
+          {(page === "chart") ?
+          <div className={styles.active}>
+            <IoBarChartOutline onClick={() => router.push("/dashboard/chart")} className={styles.menuIcon}/> 
+            <p onClick={() => router.push("/dashboard/chart")}>TradingView</p>
+          </div> :
+          <div>
+            <IoBarChartSharp onClick={() => router.push("/dashboard/chart")} className={styles.menuIcon}/> 
+            <p onClick={() => router.push("/dashboard/chart")}>TradingView</p>
+          </div>
+          }
+
+        </div>
+        <div className={styles.exit} onClick={logout}>
+          <HiOutlineLogout className={styles.logout} style={{marginLeft: "1rem"}}/>
+          <p>LogOut</p>
+        </div>
     </div>
   )
 }

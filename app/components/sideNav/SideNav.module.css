@@ -1,91 +1,209 @@
 .container{
   width: 100%;
-  height: 100%;
-  min-height: 100vh;
+  height: 100Vh;
   background: black;
-  color: whitesmoke;
-  padding: 20px 20px;
-}
-
-.logo{
-  width: fit-content;
-  margin-bottom: 150px;
-}
-
-.menu{
-  width: 100%;
+  color: white;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
 }
 
-.menu2{
-  display: none;
+.container p{
+  color: white;
 }
 
-.menu div{
+.profile{
+  width: 100%;
+  padding: 15px;
+}
+
+.profile img{
+  width: 35px;
+  height: 35px;
+  background: #1919195c;
+  object-fit: cover;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 3px #ffffff27);
+}
+
+.chatLink{
+  visibility: hidden;
+}
+
+.links{
+  width: 100%;
+  height: 60%;
+  font-size: .9rem;
+}
+
+.links div{
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 15px;
-}
-
-.menu  span{
-  font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  transition: all ease-in-out .2s;
+  justify-content: flex-start;
+  padding: 10px 2px 10px 10px;
+  gap: 10px;
   cursor: pointer;
 }
 
-.menu  span:hover{
-  color: #00e99b !important;
-  transition: all ease-in-out .2s;
+.links div p{
+  color: rgb(252, 252, 252);
 }
 
-
-
-@media only screen and (max-width: 640px) {
-.container{
-  background: white;
-  min-height: 0px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.menuIcon{
+  font-size: 1.4rem;
 }
 
-.logo{
-  display: none;
+.active{
+  background: whitesmoke;
+  cursor: pointer;
+  color: #000000;
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+  position: relative;
 }
 
-.menu{
-  display: none;
+.active p{
+  color: #000000 !important;
 }
 
-.menu2{
-  width: 100%;
+.active::before{
+  content: "";
+  position: absolute;
+  top: -30px;
+  right: 0px;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0 15px 0 0 whitesmoke;
+}
+
+.active::after{
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  right: 0px;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border-top-right-radius: 15px;
+  box-shadow: 0 -15px 0 0 whitesmoke;
+}
+
+.container Button{
+  width: 60%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 0 10px 0;
+  padding-left: 7px;
+  padding-right: 10px;
+  font-size: 0.7rem;
+  opacity: 80%;
+  transition: all ease-in-out .3s;
 }
 
-.menu2 div{
+.container Button:hover{
+  cursor: pointer;
+  opacity: 100%;
+  padding-right: 3px;
+  transition: all ease-in-out .3s;
+}
+
+.exit{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  transition: all ease-in-out .3s;
+}
+
+.logout{
+  font-size: .8rem;
+  color: #ffffffa3;
+}
+
+.exit p{
+  font-size: .6rem;
+  color: #ffffffa3 !important;
+}
+
+.exit:hover{
+  cursor: pointer;
+  color: #ffae00;
+  transition: all ease-in-out .3s;
+  gap: 15px;
+}
+
+
+@media screen and (max-width: 650px){
+.container{
+  width: 100%;
+  height: 100%;
+  padding: none;
+  box-shadow: 0px -15px 0 0px white;
+  background: white;
+}
+
+.profile{
+  display: none;
+}
+
+.links{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.active{
+  background: none;
+}
+
+.links div{
+  width: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5;
+  justify-content: center;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  gap: 0;
+  padding: 0;
+  color: #000000;
 }
 
-.menu2 svg{
-  font-size: 2.2rem;
-}
-
-.menu2 span{
+.links div p{
   font-size: .5rem;
 }
 
+.menuIcon{
+  font-size: 1.7rem;
+  filter: drop-shadow(1px 1px 3px #00000003);
+  z-index: 3500;
+  color: black;
+  cursor: default;
+}
+
+.exit{
+  display: none;
+}
+
+.active::before, .active::after{
+  display: none;
+}
+
+.active P{
+  color: rgb(69, 20, 244);
+}
+
+.active .menuIcon{
+  color: rgb(69, 20, 244);
+  transition: all ease-in-out .2s;
+}
 
 }

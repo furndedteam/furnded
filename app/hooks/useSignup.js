@@ -80,7 +80,7 @@ export const useSignup = () => {
                   gender,
                   lastLogin: dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss TT"),
                   CreatedAt: dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss TT"),
-                  bal: { deposit: 0, profit: 0, withdraw: 0 }
+                  bal: { balance: 0, profit: 0, investment: 0, savings: 0, withdrawal: 0}
                 })
             })
           }

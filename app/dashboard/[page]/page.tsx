@@ -1,5 +1,5 @@
 "use client"
-import styles from './dashboard.module.css';
+import styles from '../dashboard.module.css';
 import useAuth from '@/app/hooks/useAuth';
 import useCollection from '@/app/hooks/useCollection';
 

@@ -1,7 +1,7 @@
 "use client"
-import { createContext, useReducer,  useEffect } from 'react'
+import { useEffect } from 'react'
+import { createContext, useReducer } from 'react'
 import { auth } from "../firebase/config"
-import { onAuthStateChanged } from "firebase/auth";
 
 export const AuthContext = createContext()
 
@@ -11,8 +11,12 @@ export const AuthReducer = (state, action) => {
             return {...state, user: action.payload}
         case 'LOGOUT':
             return {...state, user: null}
-        case 'AUTHSTATE':
-            return {...state, user: action.payload}
+        case 'AUTH_STATE_CHANGED':
+            return {...state, user: action.payload, authIsReady: true}
+        case 'HIDE_MENU':
+            return {...state, hideMenu: action.payload}
+        case 'SHOW_CHAT':
+            return {...state, showChat: action.payload}
     
         default:
             return state
@@ -20,15 +24,14 @@ export const AuthReducer = (state, action) => {
 }
 
 export const AuthProvider = ({children}) => {
-    const [state, dispatch] = useReducer(AuthReducer, {user: auth.currentUser})
+    const [state, dispatch] = useReducer(AuthReducer, {user: null, authIsReady: false, hideMenu: false, showChat: false})
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            dispatch({type: "AUTHSTATE", payload: user})
-        });
+        const unsub = auth.onAuthStateChanged(user => {
+            dispatch({type: "AUTH_STATE_CHANGED", payload: user})
+            unsub()
+        })
     }, [])
-            
-    console.log(state)
 
 
   return (

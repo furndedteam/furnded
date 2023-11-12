@@ -24,6 +24,8 @@ const firestoreReducer = (state, action) => {
             return {isPending: false, doc: null, error: null, success: true}
         case "ERROR":
             return {isPending: false, doc: null, error: action.payload, success: null}
+        case "DONE":
+            return {isPending: false, doc: null, error: null, success: null}
 
         default:
             return state;
@@ -33,10 +35,8 @@ const firestoreReducer = (state, action) => {
 export function useFirestore(coll) {
     const [notCancelled, setNotCancelled] = useState(true)
     const [res, dispatch] = useReducer(firestoreReducer, initialState)
-    const contextData = useAuth()
+    const { user } = useAuth()
     const [ isPending, setIsPending ] = useState(false)
-
-    // console.log(user)
 
 
     const addDocument = async(data) => {
@@ -49,7 +49,6 @@ export function useFirestore(coll) {
                 await setDoc(docRef, data)
     
                 dispatch({type: "SET_DOC", payload: docRef})
-                console.log("success")
             }
 
         } catch (error) {
@@ -57,11 +56,15 @@ export function useFirestore(coll) {
                 dispatch({type: "ERROR", payload: error.message})
             }
         }
+
+        setTimeout(() => {
+            dispatch({type: "DONE"})
+        }, 2000);
     }
     
     const updateprofile = async(data, file, displayName) => {
         setIsPending(true)
-        const docRef = doc(db, coll, contextData.user.uid)
+        const docRef = doc(db, coll, user.uid)
         
         try {
             if (notCancelled) {
@@ -69,7 +72,7 @@ export function useFirestore(coll) {
 
                 await updateDoc(docRef, data)
 
-                const imageRef = ref(storage, `images/${contextData.user.uid}/${file.name}`)
+                const imageRef = ref(storage, `images/${user.uid}/${file.name}`)
 
                 // Upload the file and metadata
 
@@ -99,9 +102,6 @@ export function useFirestore(coll) {
                   () => {
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                         const imageUrl = downloadURL
-                        console.log('File available at', downloadURL);
-                        console.log('File url', imageRef);
-                            // update user profile
                         updateProfile(user, { displayName: displayName, photoURL: imageUrl })
 
                     })

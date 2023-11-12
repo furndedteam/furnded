@@ -5,7 +5,7 @@ export default function useAuth() {
     const context = useContext(AuthContext)
 
     if (context === undefined) {
-        console.log("useContext must be used within the scope of a contextProvider")
+        throw new Error("useContext must be used within the scope of a contextProvider")
     }
 
   return context

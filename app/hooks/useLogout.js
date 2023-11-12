@@ -17,12 +17,11 @@ export const useLogout = () => {
             await signOut(auth)
 
             // dispatching a logout function
-            contextData.dispatch({ type: "LOGOUT" })
             router.push('/login')
+            contextData.dispatch({ type: "LOGOUT" })
 
             setError(null)
         } catch (err) {
-            console.log(err.message)
             setError(err.message)
         }
     }
