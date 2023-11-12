@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 // @ts-ignore
-import { Autoplay, Pagination, Navigation } from "swiper";
+import { Autoplay, Pagination } from "swiper";
 import Image from "next/image"
 import cryptoBG from "@/public/assets/cryptoBg.jpg"
 import cryptoBG2 from "@/public/assets/cryptoBg2.jpg"
@@ -39,8 +39,7 @@ export default function Hero() {
           pagination={{
             clickable: true,
           }}
-          navigation={true}
-          modules={[Autoplay, Navigation, Pagination]}
+          modules={[Autoplay, Pagination]}
           className={s.mySwiper}
         >
           <SwiperSlide className={s.swiperslides}>
