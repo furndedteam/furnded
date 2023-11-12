@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { PulseLoader } from 'react-spinners';
 
 
-export default function Users({document, error, isPending, filter}) {
+export default function Users({data, error, isPending, filter}) {
   const [ fullWidth, setFullWidth ] = useState(false)
 
 
@@ -17,8 +17,8 @@ export default function Users({document, error, isPending, filter}) {
       {isPending && <PulseLoader color='#00000080' size={7}/> }
       {error && <div>{error}</div>}
 
-      {document && 
-      document.map((user) => 
+      {data && 
+      data.map((user) => 
         <div className={styles.users} key={user.uid} onClick={() => filter(user.email)}>
             <div className={styles.img}>
               <img src={`https://robohash.org/${user.uid}`} width={33} height={33} alt="avatar" style={{borderRadius: "50%"}}/>

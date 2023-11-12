@@ -2,7 +2,6 @@ import styles from "./about.module.css"
 import Navbar from "../components/navbar/Navbar"
 import Footer from "../components/footer/Footer"
 import { about } from "../utils/text"
-import WhatsAppBtn from "../components/whatsAppBtn/WhatsAppBtn"
 import ChartSlide from "../components/chartSlide/ChartSlide"
 
 export default function Index() {
@@ -53,7 +52,6 @@ export default function Index() {
       </section>
       <Footer />
       <ChartSlide />
-      <WhatsAppBtn />
     </div>
   )
 }

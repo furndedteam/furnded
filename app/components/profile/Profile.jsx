@@ -41,7 +41,7 @@ export default function Profile({ data }) {
           <div className={styles.details}>
             <p>Full Name: <span>{profile.fullName}</span></p>
             <p>Email: <span>{profile.email}</span></p>
-            <p>Phone Number: <span>{profile.phoneNumber}</span></p>
+            <p>Date Joined: <span>{profile.CreatedAt}</span></p>
           </div>
         </div>
       </div>

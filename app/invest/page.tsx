@@ -3,7 +3,6 @@ import Navbar from "../components/navbar/Navbar"
 import Footer from "../components/footer/Footer"
 import InvestmentCard from "../components/investmentCard/InvestmentCard";
 import { plans } from "../utils/text"
-import WhatsAppBtn from "../components/whatsAppBtn/WhatsAppBtn";
 
 
 export default function Index() {
@@ -24,7 +23,6 @@ export default function Index() {
       </div>
       <InvestmentCard plans={plans}/>
       <Footer />
-      <WhatsAppBtn />
     </div>
   )
 }

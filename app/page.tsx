@@ -5,7 +5,6 @@ import Navbar from './components/navbar/Navbar'
 import SectionOne from './components/sectionOne/SectionOne'
 import Head from 'next/head'
 import { plans, testimonials, texts, withdrawals } from './utils/text' 
-import WhatsAppBtn from './components/whatsAppBtn/WhatsAppBtn'
 import InvestmentCard from './components/investmentCard/InvestmentCard'
 import GeneralWithdraws from './components/generalWithdraws/GeneralWithdraws'
 import Testimonials from './components/testimonials/Testimonials'
@@ -30,7 +29,6 @@ export default function Home() {
       <InvestmentCard plans={plans} stock={null}/>
       <Testimonials data={testimonials}/>
       <Footer />
-      <WhatsAppBtn />
       <GeneralWithdraws withdrawals={withdrawals}/>
       <ChartSlide />
     </>
