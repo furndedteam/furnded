@@ -116,6 +116,17 @@
   padding-bottom: 20px;
 }
 
+.modalcontent input{
+  padding: 19px;
+  border-radius: 15px;
+  border: .5px solid #000;
+}
+
+.modalcontent button{
+  padding: 16px;
+  border-radius: 15px;
+}
+
 .btns{
   width: 100%;
   display: flex;

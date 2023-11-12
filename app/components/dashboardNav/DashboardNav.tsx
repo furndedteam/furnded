@@ -18,12 +18,13 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
   const [showModal, setShowModal] = useState(false);
   const [showTransactions, setShowTransactions] = useState(false);
   const [amount, setAmount] = useState<null|number|string>(null);
+  const [network, setNetwork] = useState<null|number|string>(null);
   const [address, setAddress] = useState<null|string>(null);
   const { data } = useCollection('profile', false, true);
   const { data: Doc2 } = useCollection('transactions', true, false) as any
   const [modalError, setModalError] = useState<null|string>(null);
   const [modalSuccess, setModalSuccess] = useState<null|string>(null);
-  const [isPending, setIsPending] = useState(true);
+  const [isPending, setIsPending] = useState(false);
   const ref = doc(db, "profile", user.email);
   
 
@@ -34,21 +35,13 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
   const handleTransaction = async (id:string, amount:number, fullName:string, email:string) => {
     const newRef = doc(db, "transactions", id);
     const response = prompt("Input 'yes' if you want to approve this transaction?")
-    var contactDetails = {
-      amount,
-      name: fullName,
-      email: email,
-      date: dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss"),
-      title: "Withdrawal"
-    };
-
 
     if(response === 'yes'){
       try{
-        const res = await fetch(`/api/contact`, {
+        const res = await fetch(`/api/alertUser`, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(contactDetails),
+          body: JSON.stringify({email}),
         })
       
         const data = await res.json()
@@ -89,39 +82,73 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
 
 
   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+    setModalError(null)
+    setModalSuccess(null)
+    setIsPending(true)
+
     e.preventDefault();
     if(data){
       if(amount && address){
+        console.log("start sending")
         const amountNumber = Number(amount);
         const { bal, fullName } = data as any;
-        const availableWithdraw = bal.investment + bal.profit
+        const availableWithdraw = bal.investment + bal.profit + bal.balance
+        console.log(availableWithdraw, fullName, amountNumber)
+
         if(availableWithdraw >= amountNumber){
-          const newInvestment = bal.investment - amountNumber;
-          const newProfit = bal.profit + newInvestment;
-          const newBalances = {...bal,
-            investment: 0 >= newInvestment ? 0 : newInvestment,
-            profit: newProfit >= bal.profit ? bal.profit : newProfit,
+          const newInvestment = bal.balance - amountNumber;
+          let newBalances = bal
+          if(newInvestment <= 0) {
+            const newBal = bal.profit + bal.investment + newInvestment;
+            newBalances = {...bal, balance: newBal, profit: 0, investment: 0}
           }
 
-          await updateDoc(ref, {
-            "bal": newBalances
-          });
-
-          await addDoc(collection(db, "transactions"), {
+          if(newInvestment >= 0) {
+            newBalances = {...bal, balance: newInvestment}
+          }
+          const mailDetails = {
             amount: amountNumber,
             address,
+            network,
             date: dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss"),
             status: "pending",
             email: user.email,
             fullName: fullName
-          });
+          }
 
+        
+          try{
+            await updateDoc(ref, {
+              "bal": newBalances
+            });
+
+            await addDoc(collection(db, "transactions"), mailDetails);
+            
+            const res = await fetch(`/api/withdraw`, {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify(mailDetails),
+            })
           
-          
-          setModalSuccess("Successful")
-          setTimeout(() => {
+            const data = await res.json()
+            
+            if(res.ok){
+              setModalSuccess('Mail Sent Successfully')
+              setIsPending(false)
+            } 
+            else throw new Error(data.message)
+          } catch (err: any) { 
+            setModalError('Something went wrong, try again later...') 
             setIsPending(false)
+          }
+
+       
+          
+          setTimeout(() => {
+            setModalSuccess("Successful")
           }, 3000)
+
+          setIsPending(false)
         } else {
           setModalError('Insufficient funds')
           setTimeout(() => {
@@ -135,6 +162,8 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
         }, 3000)
       }
     }
+
+    setIsPending(false)
   }
 
   const backToDashboard = () => {
@@ -201,11 +230,17 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
               type="text"
               onChange={(e) => setAddress(e.target.value)}
             />
+            <input 
+              placeholder="Network"
+              type="text"
+              onChange={(e) => setNetwork(e.target.value)}
+            />
             <div className={styles.btns}>
-              <button type="submit" className={styles.submit}>Withdraw</button>
+              <button type="submit" className={styles.submit}>{!isPending ? "Withdraw" : "loading..."}</button>
               <p className={styles.cancel} onClick={() => setShowModal(false)}>Cancel</p>
             </div>
             {modalError && <p className={styles.error}>{modalError}</p>}
+            {modalSuccess && <p className={styles.error}>{modalSuccess}</p>}
           </form>
         </div>
       </div>

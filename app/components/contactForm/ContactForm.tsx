@@ -122,7 +122,7 @@ export default function ContactForm() {
 
         {error && <p className='formError res'>{error}</p>}
         {success && <p className='formSuccess res'>{success}</p>}
-        <button className='bigBtn' style={{width: "100%"}}>{!loading? "Send" : "loading..." }</button>
+        <button className='bigBtn full'>{!loading? "Send" : "loading..." }</button>
       </form>
     </div>
   )

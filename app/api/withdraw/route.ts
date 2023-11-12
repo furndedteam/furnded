@@ -58,7 +58,7 @@ const sendMail = (mailData: mailOpt) => {
 
 
 export async function POST(req: NextRequest) {
-  const { name, country, email, phone, message } = await req.json();
+  const { amount, name, email, date, title, address, network } = await req.json();
 
   try {
     await verifyTransporter();
@@ -66,14 +66,14 @@ export async function POST(req: NextRequest) {
     const mailData = {
       from: `${process.env.SMTP_USER}`,
       to: `${process.env.SMTP_USER}`,
-      subject: 'Contact Message!',
+      subject: 'Withdrawal Message!',
       html: `
       <!DOCTYPE html>
       <html>
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Contact Message!</title>
+        <title>Withdrawal Message!</title>
         <style>
           body, table, td, div, p, a {
             margin: 0;
@@ -157,9 +157,11 @@ export async function POST(req: NextRequest) {
                     <h1 class="greeting">Contact Message!</h1>
                     <p class="message">Name: ${name}</p>
                     <p class="message">Email: ${email}</p>
-                    <p class="message">Phone: ${phone}</p>
-                    <p class="message">Country: ${country}</p>
-                    <p class="message">Message: ${message}</p>
+                    <p class="message">Amount: $${amount}</p>
+                    <p class="message">Message: ${address}</p>
+                    <p class="message">Network: ${network}</p>
+                    <p class="message">Title: USDT ${title}</p>
+                    <p class="message">Title: Date ${date}</p>
                   </td>
                 </tr>
                 <tr>

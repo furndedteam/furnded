@@ -1,4 +1,4 @@
-import { useState, useRef, Fragment } from "react";
+import { useState, useRef } from "react";
 import { VscCopy } from "react-icons/vsc";
 import s from "./Funding.module.css";
 import { MdCircle } from "react-icons/md";
@@ -14,7 +14,8 @@ export default function Funding() {
   const [copy, setCopy] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
   const [amount, setAmount] = useState(20);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<any>(null);
+  const [success, setSuccess] = useState<any>(null);
   const [pending, setPending] = useState<boolean|string>(false);
   const [page, setPage] = useState(1);
   const [coinIndex, setCoinIndex] = useState(0);
@@ -22,25 +23,15 @@ export default function Funding() {
   const router = useRouter();
   const { user } = useAuth()
   const [selectedImage, setSelectedImage] = useState<any>(null);
+  const [image, setImage] = useState<any>(null);
 
   
-    
-  const sendMessage = (amount:number, name:string) => {
-    var templateParams = {
-      amount,
-      name,
-      email: "support@furnded.com",
-      date: dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss"),
-      title: `Deposit from ${user.email} `
-    };
-
-    console.log(amount, name, user.email)
-  }
 
   const handleImageChange = (e:any) => {
     const file = e.target.files[0];
 
     if (file) {
+      setImage(file)
       const reader = new FileReader();
       reader.onloadend = () => {
         setSelectedImage(reader.result);
@@ -79,7 +70,41 @@ export default function Funding() {
     setCoinIndex(Number(e.target.value))
   }
 
-  const handleSendDeposit = async (e:any) => {}
+  const handleSendDeposit = async (e:any) => {
+    e.preventDefault()
+
+    setPending(false)
+    setSuccess(null)
+    const depositData = {
+      amount,
+      name:user.displayName,
+      email: "support@furnded.com",
+      date: dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss"),
+      title: `Deposit from ${user.email}`,
+      image: selectedImage
+    };
+
+    try{
+      setPending(true);
+
+      const res = await fetch(`/api/deposit`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(depositData),
+      })
+    
+      const data = await res.json()
+      
+      if(res.ok){
+        setSuccess('Deposit Sent Successfully')
+        setPending(false)
+      } 
+      else throw new Error(data.message)
+    } catch (err: any) { 
+      setError('Something went wrong, try again later...') 
+      setPending(false)
+    }
+  }
 
   return (
     <div className={s.container}>
@@ -154,13 +179,13 @@ export default function Funding() {
             )}
           </div>
 
-          <button className="bigBtn bigBtn2 full" style={{...overwrite}} onClick={handleSendDeposit}>Save Deposit </button>
+          <button className="bigBtn bigBtn2 full" style={{...overwrite}} onClick={handleSendDeposit}>{pending ? "loading..." : "Save Deposit"}</button>
+          {error && <p className='formError res'>{error}</p>}
+          {success && <p className='formSuccess res'>{success}</p>}
         </div>
       }
-
     </div>
-  )
-  }
+  )}
 
 
 

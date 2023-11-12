@@ -105,7 +105,7 @@
   border-radius: 20px;
   position: relative;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin: 80px 0px 30px 0px;
 }
 
 .imgWrp input, .imgWrp img{
@@ -122,6 +122,7 @@
 
 .imgWrp img{
   z-index: 20;
+  object-fit: cover;
 }
 
 .imgWrp svg{
