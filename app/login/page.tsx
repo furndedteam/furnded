@@ -28,7 +28,7 @@ export default function Login() {
     }
 
     if(e.target.type === 'password' || e.target.type === 'text') {
-      setValues({...values, password: e.target.value.toLowerCase()})
+      setValues({...values, password: e.target.value})
       if(values.email.length > 7 && values.email.includes('@') && e.target.value.length > 7)
         setShowButton(true)
       else setShowButton(false)

@@ -16,7 +16,7 @@ export default function ReferralText() {
       <p className={styles.text2}>
         Simply tell them to Register with Your Username
       </p>
-      <h1 className={styles.title2}>"{user?.displayName}"</h1>
+      <h1 className={styles.title2}>&apos;{user?.displayName}&apos;</h1>
       <p className={styles.text2}>Or simply Copy Your Referral Link & Start Sharing</p>
       <button>COPY REFERRAL LINK</button>
       <p className={styles.note}>

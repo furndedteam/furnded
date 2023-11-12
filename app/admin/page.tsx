@@ -1,7 +1,7 @@
 "use client"
 import Navbar from '@/app/components/navbar/Navbar'
 import s from './admin.module.css'
-import { collection, doc, onSnapshot, query, setDoc } from "firebase/firestore"
+import { collection, deleteDoc, doc, onSnapshot, query, setDoc } from "firebase/firestore"
 import { db } from "../../app/firebase/config"
 import { useEffect, useState } from "react"
 import useAuth from '../../app/hooks/useAuth'
@@ -17,9 +17,11 @@ export default function Index() {
   const [success, setSuccess] = useState<string|null>(null)
   const [ isPending, setIsPending ] = useState(false)
   const [ singleDoc, setSingleDoc ] = useState<any>({})
-  const [ deposit, setDeposit ] = useState(0)
+  const [ balance, setBalance ] = useState(0)
+  const [ investment, setInvestment ] = useState(0)
   const [ profit, setProfit ] = useState(0)
-  const [ withdraw, setWithdraw ] = useState(0)
+  const [ savings, setSavings ] = useState(0)
+  const [ withdrawal, setWithdrawal ] = useState(0)
 
 
       
@@ -65,9 +67,11 @@ const filter = (email:string) => {
   if(data){
     let filteredDoc = data.filter((doc) => doc.email == email)
     setSingleDoc(filteredDoc[0])
-    setDeposit(filteredDoc[0].bal.deposit)
+    setBalance(filteredDoc[0].bal.balance)
+    setInvestment(filteredDoc[0].bal.investment)
+    setSavings(filteredDoc[0].bal.savings)
     setProfit(filteredDoc[0].bal.profit)
-    setWithdraw(filteredDoc[0].bal.withdraw)
+    setWithdrawal(filteredDoc[0].bal.withdrawal)
   }
 }
 
@@ -76,7 +80,7 @@ const Update = async() => {
   setError(null)
   setSuccess(null)
   
-  const newData = {...singleDoc, bal: {deposit, profit, withdraw}}
+  const newData = {...singleDoc, bal: {balance, profit, withdrawal}}
   const docRef = doc(db, "profile", singleDoc.email)
   
   try {
@@ -86,6 +90,15 @@ const Update = async() => {
     setError("Error updating profile")
     console.log(error)
   }
+  setIsPending(false)
+}
+
+
+const deleteUserDocument = async () => {
+  setIsPending(true)
+  await deleteDoc(doc(db, "profile", user.email));
+  setSingleDoc(null)
+  console.log("Done deleting")
   setIsPending(false)
 }
 
@@ -117,35 +130,56 @@ if(!user){
             <div className={s.wrp}>
 
               <div className='inputWrp'>
-                <label>Deposit</label>
+                <label>Balance</label>
                 <input
-                type="number"
-                className={s.textarea}
-                value={deposit}
-                onChange={(e) => setDeposit(Number(e.target.value))} 
-                />
+                  type="number"
+                  className={s.textarea}
+                  value={balance}
+                  onChange={(e) => setBalance(Number(e.target.value))} 
+                  />
+              </div>
+
+              <div className='inputWrp'>
+                <label>Investment</label>
+                <input
+                  type="number"
+                  className={s.textarea}
+                  value={investment}
+                  onChange={(e) => setInvestment(Number(e.target.value))} 
+                  />
               </div>
   
               <div className='inputWrp'>
                 <label>Profit</label>
                 <input
-                type="number"
-                className={s.textarea} 
-                value={profit}
-                onChange={(e) => setProfit(Number(e.target.value))}    
-                />
+                  type="number"
+                  className={s.textarea} 
+                  value={profit}
+                  onChange={(e) => setProfit(Number(e.target.value))}    
+                  />
               </div>
   
               <div className='inputWrp'>
-                <label>Profit</label>
+                <label>Savings</label>
                 <input 
                 type="number"
-                className={s.textarea}
-                value={withdraw}
-                onChange={(e) => setWithdraw(Number(e.target.value))}       
+                className={s.textarea2}
+                value={savings}
+                onChange={(e) => setSavings(Number(e.target.value))}       
                 />
               </div>
-            <button className={s.textarea} onClick={Update}>{isPending ? "updating..." : "Update"}</button>
+
+              <div className='inputWrp'>
+                <label>Withdrawal</label>
+                <input 
+                type="number"
+                className={s.textarea2}
+                value={withdrawal}
+                onChange={(e) => setWithdrawal(Number(e.target.value))}       
+                />
+              </div>
+            <button className={s.textarea2} onClick={deleteUserDocument}>{isPending ? "deleting..." : "Delete user"}</button>
+            <button className={s.textarea2} onClick={Update}>{isPending ? "updating..." : "Update"}</button>
             {error && <p className='formError'>{error}</p>}
             {success && <p className='formSuccess'>{success}</p>}
             </div>

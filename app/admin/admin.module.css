@@ -51,27 +51,35 @@
   gap: 10px;
 }
 
-.wrp input{
-  width: 100px !important;
-}
-
-.wrp button{
-  margin-top: 20px;
-  background-color: hsla(218, 100%, 50%, 0.03);
-}
-
 .title{
   padding-bottom: 20px;
   font-size: 2rem;
 }
 
 .textarea{
-  width: 100%;
+  width: 32% !important;
   padding: 20px 8px;
   background: none;
   outline: none;
   border: 1px solid #042254;
   border-radius: 10px;
+}
+
+.textarea2{
+  width: 48%;
+  padding: 20px 8px;
+  background: none;
+  outline: none;
+  border: 1px solid #042254;
+  border-radius: 10px;
+}
+/* 
+.textarea2{
+  background-color: rgba(255, 81, 0, 0.03);
+} */
+
+.textarea2:focus{
+  border: 1px solid #002e7d;
 }
 
 .textarea:focus{

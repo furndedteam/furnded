@@ -9,7 +9,7 @@ export default function BuiltWith() {
         <div className={styles.leftTextWrapper}>
           <p className={styles.title}>Built By Furnded</p>
           <h1 className={styles.subtitle1}>Furnded Dashboard</h1>
-          <p className={styles.subtitle2}>From Trade, Investment's, cryptographic to complex elements, you will find the full documentation.</p>
+          <p className={styles.subtitle2}>From Trade, Investment&apos;s, cryptographic to complex elements, you will find the full documentation.</p>
           <p className={styles.subtitle3}>Best Trading & Investment Platform. <span>→</span></p>
         </div>
 
