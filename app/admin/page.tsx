@@ -6,7 +6,7 @@ import { db } from "../../app/firebase/config"
 import { useEffect, useState } from "react"
 import useAuth from '../../app/hooks/useAuth'
 import { useRouter } from 'next/navigation'
-import Users from '@/app/components/allUsers/Users'
+import Users from '@/app/components/allUsers/AllUsers'
 import { ImSpinner2 } from 'react-icons/im'
 
 export default function Index() {

@@ -224,7 +224,7 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
         <MdKeyboardArrowDown size="1.8em" style={{cursor: 'pointer'}} onClick={handleClick}/>
         {menu && 
           <div className={styles.menu} onClick={handleClick}>
-            {(user?.email !== "help@genesis-experts.com") && 
+            {(user?.email !== "support@furnded.com") && 
             <>
               <Link href="/">Home</Link>
               <Link href="/about">About</Link>
@@ -232,7 +232,7 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
               <Link href="#" onClick={handleWithdraw}>Withdraw</Link>
             </>
             }
-            {(user?.email === "help@genesis-experts.com") && <Link href="#" onClick={openTransaction}>Transactions</Link>}
+            {(user?.email === "support@furnded.com") && <Link href="#" onClick={openTransaction}>Transactions</Link>}
             <button onClick={logout}> Logout <HiOutlineLogout size="1.3em"/></button>
           </div>
         }

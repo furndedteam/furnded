@@ -43,7 +43,7 @@ export default function Dashboard() {
     }
 
     if(authIsReady){
-      if(user && user.email === "help@genesis-experts.com"){
+      if(user && user.email === "support@furnded.com"){
         router.push('/admin')
       }
 
@@ -75,7 +75,7 @@ export default function Dashboard() {
 
 
 
-  return ((authIsReady && user && user?.email !== "help@genesis-experts.com" && doc) &&
+  return ((authIsReady && user && user?.email !== "support@furnded.com" && doc) &&
     <div className={styles.ctn}>
       <div className={styles.side}>
         <SideNav />
