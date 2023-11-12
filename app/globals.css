@@ -85,6 +85,16 @@ h1, h2, h3{
   transform: scaleX(1);
 }
 
+.bigBtn2::before{
+  background: rgb(0, 0, 0);
+  color: #ffffff !important;
+}
+
+.bigBtn2:hover,
+.bigBtn2:focus{
+  color: #ffffff !important;
+}
+
 .bigBtn.full{
   width: 100%;
 }

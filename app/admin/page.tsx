@@ -116,7 +116,7 @@ if(!user){
 
 
   return ((user && data) &&
-    <div className={s.container}>
+    <div className={s.ctn}>
       <Navbar />
       <Users isPending={isPending} error={error} data={data} filter={filter}/>
         <div className={s.text}>
@@ -125,11 +125,10 @@ if(!user){
       <div className={s.main}>
         {singleDoc.bal &&
         <>
-          <div className="form">
+          <div className={s.form}>
             <h2>{singleDoc.bal.title}</h2>
             <div className={s.wrp}>
-
-              <div className='inputWrp'>
+              <div className={s.inputWrp}>
                 <label>Balance</label>
                 <input
                   type="number"
@@ -139,7 +138,7 @@ if(!user){
                   />
               </div>
 
-              <div className='inputWrp'>
+              <div className={s.inputWrp}>
                 <label>Investment</label>
                 <input
                   type="number"
@@ -149,7 +148,7 @@ if(!user){
                   />
               </div>
   
-              <div className='inputWrp'>
+              <div className={s.inputWrp}>
                 <label>Profit</label>
                 <input
                   type="number"
@@ -159,7 +158,7 @@ if(!user){
                   />
               </div>
   
-              <div className='inputWrp'>
+              <div className={s.inputWrp}>
                 <label>Savings</label>
                 <input 
                 type="number"
@@ -169,7 +168,7 @@ if(!user){
                 />
               </div>
 
-              <div className='inputWrp'>
+              <div className={s.inputWrp}>
                 <label>Withdrawal</label>
                 <input 
                 type="number"

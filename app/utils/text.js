@@ -250,7 +250,7 @@ export const testimonials = [
 
 
 
-export const wallet = [
+export const coin = [
   {
     id: 1,
     title: "Bitcoin",
