@@ -26,18 +26,30 @@
   cursor: pointer;
 }
 
-.signup a{
+.signup{
+  display: flex;
+  gap: 20px;
+}
+
+.signup a:nth-child(2), .signup a:nth-child(1){
   background: linear-gradient(135deg, #012875, #294CAC);
   color: rgb(255, 255, 255);
   padding: 13px 25px;
   border-radius: 40px;
   font-weight: 400;
-  transition: all ease-out .5s;
+  transition: all ease-out .1s;
   cursor: pointer;
+  border: 1px solid #012875;
+}
+
+.signup a:nth-child(1){
+  background: none;
+  color: #012875;
 }
 
 .signup a:hover{
   background: linear-gradient(250deg, #012875, #294CAC);
+  color: #ffffff;
 }
 
 .profile{

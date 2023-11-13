@@ -8,6 +8,7 @@ import useAuth from '../../app/hooks/useAuth'
 import { useRouter } from 'next/navigation'
 import Users from '@/app/components/allUsers/AllUsers'
 import { ImSpinner2 } from 'react-icons/im'
+import DashboardNav from '../components/dashboardNav/DashboardNav'
 
 export default function Index() {
   const router = useRouter()
@@ -117,7 +118,7 @@ if(!user){
 
   return ((user && data) &&
     <div className={s.ctn}>
-      <Navbar />
+      <DashboardNav admin={true}/>
       <Users isPending={isPending} error={error} data={data} filter={filter}/>
         <div className={s.text}>
           <p>{singleDoc.email}</p>

@@ -38,6 +38,7 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
 
     if(response === 'yes'){
       try{
+        setIsPending(true)
         const res = await fetch(`/api/alertUser`, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
@@ -47,7 +48,6 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
         const data = await res.json()
         
         if(res.ok){
-          setModalSuccess('Mail Sent Successfully')
           setIsPending(false)
         } 
         else throw new Error(data.message)
@@ -89,11 +89,9 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
     e.preventDefault();
     if(data){
       if(amount && address){
-        console.log("start sending")
         const amountNumber = Number(amount);
         const { bal, fullName } = data as any;
         const availableWithdraw = bal.investment + bal.profit + bal.balance
-        console.log(availableWithdraw, fullName, amountNumber)
 
         if(availableWithdraw >= amountNumber){
           const newInvestment = bal.balance - amountNumber;
@@ -133,20 +131,14 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
             const data = await res.json()
             
             if(res.ok){
-              setModalSuccess('Mail Sent Successfully')
               setIsPending(false)
+              setModalSuccess("Success")
             } 
             else throw new Error(data.message)
           } catch (err: any) { 
             setModalError('Something went wrong, try again later...') 
             setIsPending(false)
           }
-
-       
-          
-          setTimeout(() => {
-            setModalSuccess("Successful")
-          }, 3000)
 
           setIsPending(false)
         } else {

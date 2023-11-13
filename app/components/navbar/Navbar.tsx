@@ -71,7 +71,8 @@ export default function Navbar({showAuth}:{showAuth?:boolean}) {
             <>
               {showAuth &&
                 <div className={s.signup}>
-                  <Link href="/signup">Register</Link>
+                  <Link href="/login">Login</Link>
+                  <Link href="/signup">Sign up</Link>
                 </div>
               }
             </>
