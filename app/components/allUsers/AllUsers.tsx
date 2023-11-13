@@ -18,14 +18,18 @@ export default function Users({data, error, isPending, filter}:any) {
       {error && <div>{error}</div>}
 
       {data && 
-      data.map((user:any) => 
-        <div className={styles.users} key={user.uid} onClick={() => filter(user.email)}>
-            <div className={styles.img}>
-              <img src={`https://robohash.org/${user.uid}`} width={33} height={33} alt="avatar" style={{borderRadius: "50%"}}/>
+      data.map((user:any) => {
+        if(user.email !== "support@furnded.com"){
+          return (
+            <div className={styles.users} key={user.uid} onClick={() => filter(user.email)}>
+              <div className={styles.img}>
+                <img src={`https://robohash.org/${user.uid}`} width={33} height={33} alt="avatar" style={{borderRadius: "50%"}}/>
+              </div>
+              <p>{user.email}</p>
             </div>
-            <p>{user.email}</p>
-        </div>
-      )
+          )
+        }
+      })
       }
     </div>
   )

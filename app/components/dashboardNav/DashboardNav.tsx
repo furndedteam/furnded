@@ -92,7 +92,7 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
         const amountNumber = Number(amount);
         const { bal, fullName } = data as any;
         const availableWithdraw = bal.investment + bal.profit + bal.balance
-
+        
         if(availableWithdraw >= amountNumber){
           const newInvestment = bal.balance - amountNumber;
           let newBalances = bal
@@ -139,8 +139,6 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
             setModalError('Something went wrong, try again later...') 
             setIsPending(false)
           }
-
-          setIsPending(false)
         } else {
           setModalError('Insufficient funds')
           setTimeout(() => {
@@ -231,8 +229,8 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
               <button type="submit" className={styles.submit}>{!isPending ? "Withdraw" : "loading..."}</button>
               <p className={styles.cancel} onClick={() => setShowModal(false)}>Cancel</p>
             </div>
-            {modalError && <p className={styles.error}>{modalError}</p>}
-            {modalSuccess && <p className={styles.error}>{modalSuccess}</p>}
+            {modalError && <p className="formError">{modalError}</p>}
+            {modalSuccess && <p className="formSuccess">{modalSuccess}</p>}
           </form>
         </div>
       </div>
