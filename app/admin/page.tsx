@@ -178,7 +178,7 @@ if(!user){
                 onChange={(e) => setWithdrawal(Number(e.target.value))}       
                 />
               </div>
-            <button className={s.textarea2} onClick={deleteUserDocument}>{isPending ? "deleting..." : "Delete user"}</button>
+            <button className={s.textarea2} onClick={deleteUserDocument}>{isPending ? "Loading..." : "Delete user"}</button>
             <button className={s.textarea2} onClick={Update}>{isPending ? "updating..." : "Update"}</button>
             {error && <p className='formError'>{error}</p>}
             {success && <p className='formSuccess'>{success}</p>}
