@@ -81,7 +81,7 @@ const Update = async() => {
   setError(null)
   setSuccess(null)
   
-  const newData = {...singleDoc, bal: {balance, profit, withdrawal}}
+  const newData = {...singleDoc, bal: {balance, profit, investment, withdrawal, savings}}
   const docRef = doc(db, "profile", singleDoc.email)
   
   try {
