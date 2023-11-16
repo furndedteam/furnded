@@ -32,7 +32,7 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
     setShowTransactions(true)
   }
 
-  const handleTransaction = async (id:string, amount:number, fullName:string, email:string) => {
+  const handleTransaction = async (id:string, email:string) => {
     const newRef = doc(db, "transactions", id);
     const response = prompt("Input 'yes' if you want to approve this transaction?")
 
@@ -90,7 +90,7 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
     if(data){
       if(amount && address){
         const amountNumber = Number(amount);
-        const { bal, fullName } = data as any;
+        const { bal, displayName } = data as any;
         const availableWithdraw = bal.investment + bal.profit + bal.balance
         
         if(availableWithdraw >= amountNumber){
@@ -111,7 +111,7 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
             date: dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss"),
             status: "pending",
             email: user.email,
-            fullName: fullName
+            fullName: displayName
           }
 
         
@@ -171,7 +171,7 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
   <div className={styles.transaction}>
     <MdArrowBack className={styles.exit} onClick={() => setShowTransactions(false)}/>
     {Doc2?.map((doc:any, i:number) => (
-      <div key={i} className={styles.transaction_item} onClick={() => handleTransaction(doc.id, doc.amount, doc.fullName, doc.email)}>
+      <div key={i} className={styles.transaction_item} onClick={() => handleTransaction(doc.id, doc.email)}>
         <div className={styles.transaction_item_left}>
           <p>{doc.email}</p>
           <p>Address: {doc.address}</p>
