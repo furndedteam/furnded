@@ -265,7 +265,7 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
         <p>{user.displayName}</p>
       </div>
       <div className={styles.logo}>
-        <div className={styles.image}>
+        <div className={styles.image} onClick={handleClick}>
           <img src={user.photoURL ? user.photoURL : `https://robohash.org/${user.uid}`} alt="Avatar!" />
         </div>
         <MdKeyboardArrowDown size="1.8em" style={{cursor: 'pointer'}} onClick={handleClick}/>
