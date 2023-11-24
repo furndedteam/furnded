@@ -58,7 +58,7 @@ const sendMail = (mailData: mailOpt) => {
 
 
 export async function POST(req: NextRequest) {
-  const { email } = await req.json();
+  const { email, type } = await req.json();
 
   try {
     await verifyTransporter();
@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
     const mailData = {
       from: `${process.env.SMTP_USER}`,
       to: email,
-      subject: 'Contact Message!',
+      subject: 'Approval Message!',
       html: `
       <!DOCTYPE html>
       <html>
@@ -154,9 +154,10 @@ export async function POST(req: NextRequest) {
                 </tr>
                 <tr>
                   <td class="content">
-                    <h1 class="greeting">Contact Message!</h1>
-                    <p class="message">Hello dear!</p>
-                    <p class="message">Your Deposit has been approved and your balance will be credited shortly</p>
+                    <h1 class="greeting">Hello dear!</h1>
+                    <p class="message">${type === "deposit" ? "Your Deposit has been approved and your balance will be credited shortly": 
+                    "Your Withdrawal has been approved"}
+                    </p>
                   </td>
                 </tr>
                 <tr>

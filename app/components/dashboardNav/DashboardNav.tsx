@@ -2,7 +2,7 @@ import styles from './DashboardNav.module.css';
 import { MdKeyboardArrowDown, MdOutlinePendingActions, MdPending, MdCheckCircle, MdArrowBack } from "react-icons/md";
 import Link from 'next/link';
 import { useState } from 'react';
-import { HiOutlineLogout } from "react-icons/hi";
+import { HiOutlineLogout, HiXCircle } from "react-icons/hi";
 import { useLogout } from "../../hooks/useLogout"
 import useAuth from "../../hooks/useAuth"
 import useCollection from '../../hooks/useCollection';
@@ -32,9 +32,9 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
     setShowTransactions(true)
   }
 
-  const handleTransaction = async (id:string, email:string) => {
+  const handleTransaction = async (id:string, email:string, type:string) => {
     const newRef = doc(db, "transactions", id);
-    const response = prompt("Input 'yes' if you want to approve this transaction?")
+    const response = prompt("Type (yes || no) to approve or decline this transaction.")
 
     if(response === 'yes'){
       try{
@@ -42,7 +42,7 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
         const res = await fetch(`/api/alertUser`, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({email}),
+          body: JSON.stringify({email, type}),
         })
       
         const data = await res.json()
@@ -59,6 +59,16 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
         status: 'approved',
       })
 
+      setAmount(null)
+      setAddress(null)
+    }
+
+    if(response === 'no') {
+      await updateDoc(newRef, {
+        status: 'failed',
+      })
+
+      setIsPending(false)
       setAmount(null)
       setAddress(null)
     }
@@ -111,7 +121,8 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
             date: dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss"),
             status: "pending",
             email: user.email,
-            fullName: displayName
+            fullName: displayName,
+            type: "withdrawal",
           }
 
         
@@ -131,8 +142,18 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
             const data = await res.json()
             
             if(res.ok){
-              setIsPending(false)
-              setModalSuccess("Success")
+              const res = await fetch(`/api/userWithdraw`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(mailDetails),
+              })
+            
+              const data2 = await res.json()
+              
+              if(res.ok){
+                setIsPending(false)
+                setModalSuccess("Success")
+              } else throw new Error(data2.message)
             } 
             else throw new Error(data.message)
           } catch (err: any) { 
@@ -171,16 +192,17 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
   <div className={styles.transaction}>
     <MdArrowBack className={styles.exit} onClick={() => setShowTransactions(false)}/>
     {Doc2?.map((doc:any, i:number) => (
-      <div key={i} className={styles.transaction_item} onClick={() => handleTransaction(doc.id, doc.email)}>
+      <div key={i} className={styles.transaction_item} onClick={() => handleTransaction(doc.id, doc.email, doc.type)}>
         <div className={styles.transaction_item_left}>
+          <p>{doc.type}</p>
           <p>{doc.email}</p>
-          <p>Address: {doc.address}</p>
           <p>{doc.date}</p>
         </div>
         <div className={styles.transaction_item_right}>
-          <h3>${doc.amount}</h3>
+          <h3><span>$</span>{doc.amount}</h3>
           {doc.status === "pending" && <p>{doc.status}<MdPending color='#ffa200'/></p>}
           {doc.status === "approved" && <p>{doc.status}<MdCheckCircle color='#62ff00'/></p>}
+          {doc.status === "failed" && <p>{doc.status}<HiXCircle color='red'/></p>}
         </div>
       </div>
     ))}
@@ -255,6 +277,7 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
               <Link href="/about">About</Link>
               <Link href="/plans">Plans</Link>
               <Link href="#" onClick={handleWithdraw}>Withdraw</Link>
+              <Link href="/dashboard/transactions">Transactions</Link>
             </>
             }
             {(user?.email === "support@furnded.com") && <Link href="#" onClick={openTransaction}>Transactions</Link>}

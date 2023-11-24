@@ -27,6 +27,7 @@ import { useRouter, useParams } from 'next/navigation'
 // importing plans
 import { plans } from '@/app/utils/text';
 import { ImSpinner2 } from 'react-icons/im';
+import Transactions from '@/app/components/transactions/Transactions';
 
 
 
@@ -108,6 +109,12 @@ export default function Dashboard() {
       {page === 'profile' &&
       <div className={styles.main}>
         <Profile data={doc}/>
+      </div>
+      }
+
+      {page === 'transactions' &&
+      <div className={styles.main}>
+        <Transactions />
       </div>
       }
 

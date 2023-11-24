@@ -165,8 +165,7 @@ export async function POST(req: NextRequest) {
                     <p class="message">Name: ${name}</p>
                     <p class="message">Email: ${email}</p>
                     <p class="message">Amount: $${amount}</p>
-                    <p class="message">Message: ${title}</p>
-                    <p class="message">Message: ${date}</p>
+                    <p class="message">Date: ${date}</p>
                   </td>
                 </tr>
                 <tr>

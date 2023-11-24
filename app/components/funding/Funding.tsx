@@ -8,6 +8,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { coin } from "@/app/utils/text";
 import { BsFileEarmarkImage } from "react-icons/bs";
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../firebase/config';
 
 
 export default function Funding() {
@@ -23,7 +25,6 @@ export default function Funding() {
   const router = useRouter();
   const { user } = useAuth()
   const [selectedImage, setSelectedImage] = useState<any>(null);
-  const [image, setImage] = useState<any>(null);
 
   
 
@@ -31,7 +32,6 @@ export default function Funding() {
     const file = e.target.files[0];
 
     if (file) {
-      setImage(file)
       const reader = new FileReader();
       reader.onloadend = () => {
         setSelectedImage(reader.result);
@@ -72,20 +72,27 @@ export default function Funding() {
 
   const handleSendDeposit = async (e:any) => {
     e.preventDefault()
-
     setPending(false)
     setSuccess(null)
+    setError(null)
+
     const depositData = {
       amount,
       name:user.displayName,
-      email: "support@furnded.com",
+      email: user.email,
       date: dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss"),
       title: `Deposit from ${user.email}`,
-      image: selectedImage
+      image: selectedImage,
+      type: "deposit",
+      status: "pending"
     };
+
+    const transactionData = {...depositData, image: null}
 
     try{
       setPending(true);
+      
+      await addDoc(collection(db, "transactions"), transactionData);
 
       const res = await fetch(`/api/deposit`, {
         method: 'POST',
@@ -96,8 +103,18 @@ export default function Funding() {
       const data = await res.json()
       
       if(res.ok){
-        setSuccess('Deposit Sent Successfully')
+        const res = await fetch(`/api/userDeposit`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(transactionData),
+        })
+      
+        const data2 = await res.json()
+        
+        if(res.ok){
+        setSuccess('Deposit Sent Successfully and Pending Approval.')
         setPending(false)
+        } else throw new Error(data2.message)
       } 
       else throw new Error(data.message)
     } catch (err: any) { 
