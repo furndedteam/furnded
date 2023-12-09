@@ -45,21 +45,25 @@ export default function InvestmentCard({plans}:any) {
 
       if (user) {
         const amount = Number(window.prompt("Enter investment amount", ""))
-
         
-        if (amount < userDetails.bal.deposit) {
-          setSuccess("Your investment was successful")
+        if (amount < userDetails.bal.balance) {
+          console.log(amount)
           addDocument({ title: `${title} Investment`, amount, desc, createdAt, email: user.email, pending: true })
           
-          let newBal = userDetails.bal.deposit - amount
-
-          const newData = {...userDetails, bal: {...userDetails.bal, deposit: newBal}}
+          let newBal = userDetails.bal.balance - amount
+          
+          const newData = {...userDetails, bal: {...userDetails.bal, balance: newBal, investment: amount + userDetails.bal.investment}}
           const docRef = doc(db, "profile", user.email)
           setDoc(docRef, newData)
+
+          setSuccess("Your investment was successful")
+          setMessage(true)
         }
 
-        if(amount > userDetails.bal.deposit) setFailed("Insufficient funds")
-        setMessage(true)
+        if(amount > userDetails.bal.balance) {
+          setFailed("Insufficient funds")
+          setMessage(true)
+        } 
       } else {
         router.push("/login")
       }
