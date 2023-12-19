@@ -103,6 +103,16 @@
   color: whitesmoke;
 }
 
+.spinner{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 @media screen and (max-width: 500px){ 
 .card{
