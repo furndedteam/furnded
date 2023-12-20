@@ -255,8 +255,8 @@ export const coin = [
     id: 1,
     title: "Bitcoin",
     network: "BTC",
-    address: "bc1qnt9srag9yneu0qw5dh4djvt27pdht73ftwc009",
-    link: "https://link.trustwallet.com/send?coin=0&address=bc1qnt9srag9yneu0qw5dh4djvt27pdht73ftwc009",
+    address: "3D3ARd7y2wUVMT6GSoAiNXapAgYRL3X8XS",
+    link: "/",
   },
   {
     id: 2,
