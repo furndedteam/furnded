@@ -255,22 +255,8 @@ export const coin = [
     id: 1,
     title: "Bitcoin",
     network: "BTC",
-    address: "3D3ARd7y2wUVMT6GSoAiNXapAgYRL3X8XS",
+    address: "bc1qcggzzfr8f9fv4724d6cse40nua5ug235fwe320",
     link: "/",
-  },
-  {
-    id: 2,
-    title: "Ethereum",
-    network: "Erc 20",
-    address: "0x50a4478B2b7C97bE4AA1cB86C56E7bC34933EA4a",
-    link: "https://link.trustwallet.com/send?coin=60&address=0x50a4478B2b7C97bE4AA1cB86C56E7bC34933EA4a",
-  },
-  {
-    id: 3,
-    title: "Usdt",
-    network: "Trc 20",
-    address: "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
-    link: "https://link.trustwallet.com/send?coin=195&address=TTesQRGhxxK57TH7b1bFQovngyfngfEAkt&token_id=TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
   }
 ];
 
