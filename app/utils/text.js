@@ -257,7 +257,14 @@ export const coin = [
     network: "BTC",
     address: "bc1qcggzzfr8f9fv4724d6cse40nua5ug235fwe320",
     link: "/",
-  }
+  },
+  {
+    id: 2,
+    title: "USDT",
+    network: "TRC20",
+    address: "TTesQRGhxxK57TH7b1bFQovngyfngfEAkt",
+    link: "/",
+  },
 ];
 
 export const message = {

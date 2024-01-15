@@ -58,7 +58,7 @@ const sendMail = (mailData: mailOpt) => {
 
 
 export async function POST(req: NextRequest) {
-  const { name, email, amount, date, title, image } = await req.json();
+  const { name, email, amount, date, image } = await req.json();
 
   try {
     await verifyTransporter();
