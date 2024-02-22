@@ -261,8 +261,22 @@ export const coin = [
   {
     id: 2,
     title: "USDT",
-    network: "TRC20",
+    network: "Trc20",
     address: "TTesQRGhxxK57TH7b1bFQovngyfngfEAkt",
+    link: "/",
+  },
+  {
+    id: 3,
+    title: "USDT",
+    network: "Bep20",
+    address: "0x76C92A9d1A35E101CBb4C7C08E92617b579AcbdE",
+    link: "/",
+  },
+  {
+    id: 4,
+    title: "USDT",
+    network: "Erc20",
+    address: "0x50a4478B2b7C97bE4AA1cB86C56E7bC34933EA4a",
     link: "/",
   },
 ];
