@@ -148,7 +148,9 @@ export default function Funding() {
           <label>Coin</label>
           <select onChange={handleCoin}>
             <option value={0}>Bitcoin</option>
-            <option value={1}>USDT</option>
+            <option value={1}>USDT Trc20</option>
+            <option value={2}>USDT Bep20</option>
+            <option value={3}>USDT Erc20</option>
           </select>
 
           <div className={s.qr}>
