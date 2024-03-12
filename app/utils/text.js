@@ -39,28 +39,28 @@ export const plans = [
     amount: "$100 - $5000",
     title: "Bronze",
     desc: "Suitable for all",
-    truepoints: ["Duration: 6days", "Return Per Day: 2%", "Total Return: 12%"],
+    truepoints: ["Duration: 6days", "Return Per Day: 2%"],
   },
   {
     id: 2,
     title: "Deluxe",
     amount: "$5000 - $20,000",
     desc: "Increased yield percentage",
-    truepoints: ["Personalized Portfolio", "Duration: 6days", "Return Per Day: 2.5%", "Total Return: 15%"],
+    truepoints: ["Personalized Portfolio", "Duration: 6days", "Return Per Day: 2.5%"],
   },
   {
     id: 3,
     amount: "$20,000 - $40,000",
     title: "Heavy",
     desc: "Exclusive benifits and privileges",
-    truepoints: ["Personalized Portfolio", "Duration: 6days", "Return Per Day: 3%", "Total Return: 18%"],
+    truepoints: ["Personalized Portfolio", "Duration: 6days", "Return Per Day: 3%"],
   },
   {
     id: 4,
     amount: "$40,000 - unlimited",
     title: "Compounding",
     desc: "Diversify Your Portfolio",
-    truepoints: ["Personalized Portfolio", "Referal Commission: 8%", "Duration: 50days", "Return Per Day: 3.5%", "Total Return: 175%"],
+    truepoints: ["Personalized Portfolio", "Referal Commission: 8%", "Duration: 50days", "Return Per Day: 3.5%"],
   },
 ]
 
@@ -71,7 +71,7 @@ export const about = [
   {
     id: 1,
     title: "About Us",
-    span: ["We started by providing smart, simple investing, without the high fees and account minimums associated with traditional investment management. We invest your money in a globally diversified portfolio of low-cost index funds, and our cutting-edge technology helps you earn the best possible return, while optimizing your tax bill. This means we do things like automatic rebalancing, dividend reinvesting, and tax loss harvesting — services that were only available to the ultra rich until now or that most people found too time-consuming and tedious to do on their own.", 
+    span: ["We started by providing smart, simple investing, without the high fees and account minimums associated with traditional investment management. We invest your money in a globally diversified portfolio of low-cost index funds, and our cutting-edge technology helps you earn the best possible return, while optimizing your tax bill. This means we do things like automatic rebalancing, dividend reinvesting, and tax loss harvesting — services that were only available to the ultra rich until now or that most people found too time-consuming and tedious to do on their own.",
 
     "Our expert financial advisors are always available when you need them. They can help plan your financial milestones and answer questions you might have about potential risks or what sort of investment accounts you should have.",
 
