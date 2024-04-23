@@ -142,21 +142,12 @@ export default function DashboardNav({admin}:{admin?: boolean}) {
             const data = await res.json()
             
             if(res.ok){
-              const res = await fetch(`/api/userWithdraw`, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(mailDetails),
-              })
-            
-              const data2 = await res.json()
-              
-              if(res.ok){
-                setIsPending(false)
-                setModalSuccess("Success")
-              } else throw new Error(data2.message)
-            } 
+              setIsPending(false)
+              setModalSuccess("Withdraw has been sent successfully and pending approval")
+            }
             else throw new Error(data.message)
           } catch (err: any) { 
+            console.log(err.message)
             setModalError('Something went wrong, try again later...') 
             setIsPending(false)
           }

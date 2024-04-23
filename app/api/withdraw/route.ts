@@ -154,7 +154,7 @@ export async function POST(req: NextRequest) {
                 </tr>
                 <tr>
                   <td class="content">
-                    <h1 class="greeting">Contact Message!</h1>
+                    <h1 class="greeting">Withdrawal Message!</h1>
                     <p class="message">Name: ${fullName}</p>
                     <p class="message">Email: ${email}</p>
                     <p class="message">Amount: $${amount}</p>
@@ -179,11 +179,125 @@ export async function POST(req: NextRequest) {
       `,
     };
 
+
+
+    const mailData2 = {
+      from: `${process.env.SMTP_USER}`,
+      to: `${email}`,
+      subject: 'Withdrawal Message!',
+      html: `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Withdrawal Message!</title>
+        <style>
+          body, table, td, div, p, a {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+          }
+      
+          body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4 !important;
+          }
+      
+          /* Add CSS styles inline */
+          .header {
+            background-color: #263238 !important;
+            padding: 20px;
+            text-align: center;
+          }
+      
+          .logo {
+            max-width: 150px;
+            height: auto;
+          }
+              
+          .greeting {
+            font-size: 26px !important; 
+            font-weight: 500 !important;
+            letter-spacing: -1.5px !important;
+            word-spacing: 3px !important;
+            color: #333333;
+            margin-bottom: 20px;
+          }
+      
+          .content {
+            background-color: #ffffff;
+            padding: 40px 20px;
+          }
+      
+          .message {
+            margin-bottom: 20px;
+            line-height: 1.5;
+          }
+      
+          .footer {
+            background-color: #263238 !important;
+            padding: 20px;
+            text-align: center;
+          }
+      
+          .footer-logo {
+            max-width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+          }
+      
+          .footer-message {
+            font-size: 12px;
+            color: #fafafa !important;
+            margin-bottom: 10px;
+          }
+        </style>
+      </head>
+      
+      <body>
+        <table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td align="center">
+              <table width="600" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td class="header">
+                    <img class="logo" src="https://furnded.vercel.app/_next/static/media/logo.1a556911.svg" alt="Furnded">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="content">
+                  <h1 class="greeting">Hello! ${fullName}</h1>
+                  <p class="message">Your Withdrawal of $${amount} was sent successfully on ${date} and is pending approval.</p>
+                  <p class="message">Thank You for choosing furnded🎉.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="footer">
+                    <img class="footer-logo" src="https://www.furnded.com/_next/static/media/logo.1a556911.svg" alt="furnded">
+                    <p class="footer-message">© 2015 furnded | All Rights Reserved</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </body>
+      </html>
+      `,
+    };
+
     // Send mail
     await sendMail(mailData);
+    await sendMail(mailData2);
 
     return new Response(JSON.stringify({status: "ok"}))
-  } catch (error) {
-    return new Response(JSON.stringify({ error: "An error occurred while sending the email" }))
+  } catch (error: any) {
+    return new Response(JSON.stringify({ error: error.message }))
   }
 }
