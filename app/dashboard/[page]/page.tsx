@@ -38,7 +38,7 @@ export default function Dashboard() {
   const router = useRouter()
 
   useEffect(() => {
-    const chatDiv = document.getElementById('tidio-chat')
+    const chatDiv = document.getElementById('smartsupp-widget-container')
     if(chatDiv){
       chatDiv.style.display = 'none';
     }
